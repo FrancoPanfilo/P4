@@ -1,15 +1,17 @@
 #include "../h/DTExpe.h"
-#include <set>
+#include <vector>
 
-std::ostream &operator<<(std::ostream &os, const DTExpe &expe)
+using namespace std;
+
+ostream &operator<<(ostream &os, const DTExpe &expe)
 {
-    os << expe.codigo << " -> "
-       << expe.desc << " ("
-       << expe.fecha.toString() << ")";
+    os << expe.getCodigo() << " -> "
+       << expe.getDesc() << " ("
+       << expe.getFecha().toString() << ")";
     return os;
 }
 
-DTExpe::DTExpe(std::string codigo, std::string desc, DTFecha fecha, std::set<std::string> turistas)
+DTExpe::DTExpe(string codigo, string desc, DTFecha fecha, vector<string> turistas)
     : codigo(codigo), desc(desc), fecha(fecha), turistas(turistas)
 {
 }
@@ -18,28 +20,28 @@ DTExpe::~DTExpe() {
 
 };
 
-string DTExpe::getCodigo()
+string DTExpe::getCodigo() const
 {
     return this->codigo;
 }
 
-string DTExpe::getDesc()
+string DTExpe::getDesc() const
 {
     return this->desc;
 }
 
-DTFecha DTExpe::getFecha()
+DTFecha DTExpe::getFecha() const
 {
     return this->fecha;
 }
 
-set<string> DTExpe::getTuristas()
+vector<string> DTExpe::getTuristas() const
 {
     return this->turistas;
 }
 
 // pasar set a String
-std::string turistaString(set<std::string> turistas)
+string turistaString(vector<string> turistas)
 {
     string turistaS;
     for (string turista : turistas)
@@ -49,9 +51,9 @@ std::string turistaString(set<std::string> turistas)
     return turistaS;
 }
 
-std::string DTExpe::toString()
+string DTExpe::toString()
 {
-    std::string codigo = getCodigo();
+    string codigo = getCodigo();
     string descripcion = getDesc();
     DTFecha fecha = getFecha();
     string turista = turistaString(turistas);

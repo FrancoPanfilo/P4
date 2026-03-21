@@ -1,17 +1,21 @@
 #include "../h/eventoCultural.h"
 #include <iostream>
 
-EventoCultural::EventoCultural(std::string codigoReserva,
-                               std::string descripcion,
+using namespace std;
+
+EventoCultural::EventoCultural(string codigoReserva,
+                               string descripcion,
                                int precioBase,
                                DTFecha fecha,
-                               std::string ubicacion,
+                               string ubicacion,
                                bool usoCupon)
-    : Experiencia(codigoReserva, descripcion, precioBase, fecha) {}
+    : Experiencia(codigoReserva, descripcion, precioBase, fecha),
+      ubicacion(ubicacion),
+      usoCupon(usoCupon) {}
 
 EventoCultural::~EventoCultural() {}
 
-std::string EventoCultural::getUbicacion() const
+string EventoCultural::getUbicacion() const
 {
     return ubicacion;
 }
@@ -23,9 +27,9 @@ bool EventoCultural::getUsoCupon() const
 
 float EventoCultural::calcularCosto() const
 {
-    int cantidadTuristas = turistas.size();
+    int cantidadTuristas = this->getTuristas().size();
 
-    float costo = precioBase * cantidadTuristas;
+    float costo = this->getPrecioBase() * cantidadTuristas;
 
     if (usoCupon)
     {

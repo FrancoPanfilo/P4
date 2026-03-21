@@ -4,6 +4,9 @@
 #include "experiencia.h"
 #include <string>
 #include "TipoRegimen.h"
+
+using namespace std;
+
 class Alojamiento : public Experiencia
 {
 private:
@@ -12,11 +15,13 @@ private:
     int cantidadNoches;
 
 public:
-    Alojamiento(std::string codigoReserva, std::string nombre, double precio,
-                std::string hotel, TipoRegimen regimen, int cantidadNoches);
+    Alojamiento(string codigoReserva, string descripcion, int precio, DTFecha fecha,
+                string hotel, TipoRegimen regimen, int cantidadNoches);
     ~Alojamiento();
-    float calcularCosto();
-    int getCantNoches();
+
+    float calcularCosto() const override;
+
+    int getCantNoches() const;
 };
 
 #endif

@@ -4,25 +4,27 @@
 #include "experiencia.h"
 #include <string>
 
+using namespace std;
+
 class EventoCultural : public Experiencia
 {
 private:
-    std::string ubicacion;
+    string ubicacion;
     bool usoCupon;
 
 public:
-    EventoCultural(std::string codigoReserva,
-                   std::string descripcion,
+    EventoCultural(string codigoReserva,
+                   string descripcion,
                    int precioBase,
                    DTFecha fecha,
-                   std::string ubicacion,
+                   string ubicacion,
                    bool usoCupon);
     ~EventoCultural();
 
-    std::string getUbicacion() const;
+    string getUbicacion() const;
     bool getUsoCupon() const;
 
-    float calcularCosto() const;
+    float calcularCosto() const override;
 };
 
 #endif
