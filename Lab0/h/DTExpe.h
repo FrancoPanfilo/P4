@@ -5,7 +5,6 @@
 
 #include <string>
 #include <ostream>
-#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -18,19 +17,13 @@ private:
     vector<string> turistas;
 
 public:
-    // const
     DTExpe(string, string, DTFecha, vector<string>);
-
-    // dest
     ~DTExpe();
-
-    // getters
     string getCodigo() const;
     string getDesc() const;
     DTFecha getFecha() const;
     vector<string> getTuristas() const;
-
-    string toString();
+    string toString() const;
 };
 
 ostream &operator<<(ostream &os, const DTExpe &expe);

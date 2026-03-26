@@ -11,19 +11,12 @@ private:
     int dia, mes, anio;
 
 public:
-    // const
     DTFecha(int, int, int);
-
-    // dest
     ~DTFecha();
-
-    // getters
-    int getDia();
-    int getMes();
-    int getAnio();
-
+    int getDia() const;
+    int getMes() const;
+    int getAnio() const;
     string toString() const;
-
     bool operator>(const DTFecha &f) const; // para usar ">" con DTFecha
 };
 

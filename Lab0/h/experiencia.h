@@ -2,13 +2,9 @@
 #define EXPERIENCIA_H
 
 #include "DTFecha.h"
-#include "turista.h"
 #include "DTExpe.h"
-
-#include <iostream>
+#include "./turista.h"
 #include <string>
-#include <list>
-#include <set>
 #include <vector>
 
 using namespace std;
@@ -30,16 +26,11 @@ public:
     void eliminarExperiencia();
     DTExpe getDT();
     virtual float calcularCosto() const = 0;
-
-    string getCodigoReserva();
-    string getDescripcion();
+    string getCodigoReserva() const;
+    string getDescripcion() const;
     int getPrecioBase() const;
-    DTFecha getFecha();
-
+    DTFecha getFecha() const;
     void agregarTurista(Turista *t); // agregar turista a experiencia
-
-    Experiencia *buscarPorCodigo(string codigo);
-
     vector<string> getTuristas() const;
 };
 

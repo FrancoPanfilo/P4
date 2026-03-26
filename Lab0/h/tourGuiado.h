@@ -3,7 +3,6 @@
 
 #include "experiencia.h"
 #include <string>
-#include <set>
 
 using namespace std;
 
@@ -25,7 +24,7 @@ public:
     string getAgencia() const;
     vector<string> getlugaresVisitados() const;
 
-    float calcularCosto() const override;
+    float calcularCosto() const;
 };
 
 #endif

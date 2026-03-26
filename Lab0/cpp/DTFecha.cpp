@@ -11,26 +11,27 @@ DTFecha::~DTFecha() {
 
 };
 
-int DTFecha::getAnio()
+int DTFecha::getAnio() const
 {
     return this->anio;
 }
 
-int DTFecha::getMes()
+int DTFecha::getMes() const
 {
     return this->mes;
 }
 
-int DTFecha::getDia()
+int DTFecha::getDia() const
 {
     return this->dia;
 }
 
-std::string DTFecha::toString() const
+string DTFecha::toString() const
 {
-    return to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
+    char buf[20];
+    sprintf(buf, "%d/%d/%d", dia, mes, anio);
+    return string(buf);
 }
-
 // para usar ">" con DTFecha
 bool DTFecha::operator>(const DTFecha &f) const
 {

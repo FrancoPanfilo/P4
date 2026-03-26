@@ -18,9 +18,7 @@ public:
     Alojamiento(string codigoReserva, string descripcion, int precio, DTFecha fecha,
                 string hotel, TipoRegimen regimen, int cantidadNoches);
     ~Alojamiento();
-
-    float calcularCosto() const override;
-
+    float calcularCosto() const;
     int getCantNoches() const;
 };
 

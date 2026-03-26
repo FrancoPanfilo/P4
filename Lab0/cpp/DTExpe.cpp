@@ -1,13 +1,23 @@
 #include "../h/DTExpe.h"
-#include <vector>
 
 using namespace std;
-
+string turistaString(vector<string> turistas)
+{
+    string turistaS;
+    for (int i = 0; i < (int)turistas.size(); i++)
+    {
+        turistaS += turistas[i] + "   ";
+    }
+    return turistaS;
+}
 ostream &operator<<(ostream &os, const DTExpe &expe)
 {
-    os << expe.getCodigo() << " -> "
-       << expe.getDesc() << " ("
-       << expe.getFecha().toString() << ")";
+
+    os << expe.getCodigo() << "->"
+       << expe.getDesc() << "("
+       << expe.getFecha().toString() << ")/"
+       << turistaString(expe.getTuristas())
+       << endl;
     return os;
 }
 
@@ -38,25 +48,4 @@ DTFecha DTExpe::getFecha() const
 vector<string> DTExpe::getTuristas() const
 {
     return this->turistas;
-}
-
-// pasar set a String
-string turistaString(vector<string> turistas)
-{
-    string turistaS;
-    for (string turista : turistas)
-    {
-        turistaS += turista + ", ";
-    }
-    return turistaS;
-}
-
-string DTExpe::toString()
-{
-    string codigo = getCodigo();
-    string descripcion = getDesc();
-    DTFecha fecha = getFecha();
-    string turista = turistaString(turistas);
-
-    return codigo + "->" + descripcion + " (" + fecha.toString() + ") /" + turista;
 }

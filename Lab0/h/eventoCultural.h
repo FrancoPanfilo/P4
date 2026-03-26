@@ -23,8 +23,7 @@ public:
 
     string getUbicacion() const;
     bool getUsoCupon() const;
-
-    float calcularCosto() const override;
+    float calcularCosto() const;
 };
 
 #endif

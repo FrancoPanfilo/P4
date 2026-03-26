@@ -1,6 +1,5 @@
 
 #include "../h/tourGuiado.h"
-#include <iostream>
 
 using namespace std;
 

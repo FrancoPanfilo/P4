@@ -1,5 +1,4 @@
 #include "../h/turista.h"
-#include <vector>
 using namespace std;
 
 Turista::Turista(const string &ci, const string &nombre, const string &email)
@@ -34,6 +33,7 @@ vector<string> Turista::listarExperiencias(DTFecha &desde, float min, float max)
 
 void Turista::agregarExperiencia(Experiencia *e)
 {
+
     if (e != NULL)
     {
         experiencias.push_back(e);
@@ -67,18 +67,3 @@ void Turista::quitarExperiencia(string codigo)
         }
     }
 }
-
-// retorna turista de vector que coincida ci,
-/*
-Turista* buscarPorCI(string ci)
-{
-    for (int i = 0; i < turistas.size(); i++)
-    {
-        if (turistas[i] != NULL && turistas[i]->getCi() == ci)
-        {
-            return turistas[i];
-        }
-    }
-    return NULL;
-}
-*/

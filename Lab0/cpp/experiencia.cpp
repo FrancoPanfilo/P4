@@ -1,8 +1,4 @@
 #include "../h/experiencia.h"
-#include "../h/DTExpe.h"
-
-#include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -17,19 +13,19 @@ Experiencia::~Experiencia() {}
 DTExpe Experiencia::getDT()
 {
     vector<string> nombres;
-    for (Turista *t : this->turistas)
+    for (int i = 0; i < (int)turistas.size(); i++)
     {
-        nombres.push_back(t->getNombre());
+        nombres.push_back(turistas[i]->getNombre());
     }
     return DTExpe(this->codigoReserva, this->descripcion, this->fecha, nombres);
 }
 
-string Experiencia::getCodigoReserva()
+string Experiencia::getCodigoReserva() const
 {
     return this->codigoReserva;
 }
 
-string Experiencia::getDescripcion()
+string Experiencia::getDescripcion() const
 {
     return this->descripcion;
 }
@@ -39,7 +35,7 @@ int Experiencia::getPrecioBase() const
     return this->precioBase;
 }
 
-DTFecha Experiencia::getFecha()
+DTFecha Experiencia::getFecha() const
 {
     return this->fecha;
 }
@@ -47,15 +43,16 @@ DTFecha Experiencia::getFecha()
 vector<string> Experiencia::getTuristas() const
 {
     vector<string> nombres;
-    for (Turista *t : this->turistas)
+    for (int i = 0; i < (int)turistas.size(); i++)
     {
-        nombres.push_back(t->getNombre());
+        nombres.push_back(turistas[i]->getNombre());
     }
     return nombres;
 }
 
 void Experiencia::agregarTurista(Turista *t)
 {
+
     if (t != NULL)
     {
         this->turistas.push_back(t);
@@ -77,18 +74,3 @@ void Experiencia::eliminarExperiencia()
 
     return; // fin
 }
-
-/*
-//retorna exp de vector que coincida codigo
-Experiencia* buscarPorCodigo(string codigo)
-{
-    for (int i = 0; i < experiencias.size(); i++)
-    {
-        if (experiencias[i] != NULL && experiencias[i]->getCodigoReserva() == codigo)
-        {
-            return experiencias[i];
-        }
-    }
-    return NULL;
-}
-*/
