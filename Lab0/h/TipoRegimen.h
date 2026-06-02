@@ -1,5 +1,0 @@
-enum TipoRegimen
-{
-    AllInclusive,
-    MediaPension
-};
