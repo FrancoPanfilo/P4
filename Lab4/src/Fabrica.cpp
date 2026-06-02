@@ -25,3 +25,23 @@ IControladorUsuarios* Fabrica::getIControladorUsuarios() {
 IControladorViajes* Fabrica::getIControladorViajes() {
     return ControladorViajes::getInstance();
 }
+
+ICalificarUsuario* Fabrica::getICalificarUsuario() {
+    return ControladorUsuarios::getInstance();
+}
+
+IEliminarViaje* Fabrica::getIEliminarViaje() {
+    return ControladorViajes::getInstance();
+}
+
+IAltaUsuario* Fabrica::getIAltaUsuario() {
+    return ControladorUsuarios::getInstance();
+}
+
+IAltaViaje* Fabrica::getIAltaViaje() {
+    return ControladorViajes::getInstance();
+}
+
+IGenerarReserva* Fabrica::getIGenerarReserva() {
+    return ControladorViajes::getInstance();
+}

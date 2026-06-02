@@ -17,6 +17,12 @@ public:
     IControladorFechaActual* getIControladorFechaActual();
     IControladorUsuarios* getIControladorUsuarios();
     IControladorViajes* getIControladorViajes();
+
+    ICalificarUsuario* getICalificarUsuario();
+    IEliminarViaje* getIEliminarViaje();
+    IAltaUsuario* getIAltaUsuario();
+    IAltaViaje* getIAltaViaje();
+    IGenerarReserva* getIGenerarReserva();
 };
 
 #endif
