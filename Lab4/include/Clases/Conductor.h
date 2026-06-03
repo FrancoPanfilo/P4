@@ -12,6 +12,10 @@ private:
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
     ~Conductor();
+    tieneLibreta(TipoLibreta tipo);
+    listarVehiculos();
+    hayViajeFechaConductor(DTFecha fecha);
+    getLicencias();
 };
 
 #endif
