@@ -46,6 +46,8 @@ public:
 
     std::set<DTUsuario> listarPasajeros();
 
+    std::set<DTUsuario> listarUsuarios();
+
     Pasajero* findPasajero(std::string nickname);
         
     Usuario* getUsuario(std::string nickname);     

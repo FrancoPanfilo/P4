@@ -1,9 +1,12 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
-#include "../Interfaces/IControladorFechaActual.h"
-#include "../Interfaces/IControladorUsuarios.h"
-#include "../Interfaces/IControladorViajes.h"
+#include "Interfaces/IControladorFechaActual.h"
+#include "Interfaces/IAltaUsuario.h"
+#include "Interfaces/ICalificarUsuario.h"
+#include "Interfaces/IAltaViaje.h"
+#include "Interfaces/IGenerarReserva.h"
+#include "Interfaces/IEliminarViaje.h"
 
 class Fabrica {
 private:
@@ -15,14 +18,13 @@ public:
     static Fabrica* getInstance();
 
     IControladorFechaActual* getIControladorFechaActual();
-    IControladorUsuarios* getIControladorUsuarios();
-    IControladorViajes* getIControladorViajes();
 
     ICalificarUsuario* getICalificarUsuario();
-    IEliminarViaje* getIEliminarViaje();
     IAltaUsuario* getIAltaUsuario();
+
     IAltaViaje* getIAltaViaje();
     IGenerarReserva* getIGenerarReserva();
+    IEliminarViaje* getIEliminarViaje();
 };
 
 #endif
