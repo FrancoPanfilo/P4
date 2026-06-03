@@ -4,9 +4,9 @@
 #include <set>
 #include <string>
 
-#include "DTUsuario.h"
-#include "DTListarViaje.h"
-#include "DTUsuarioViaje.h"
+#include "../DTyENUM/DTUsuario.h"
+#include "../DTyENUM/DTListarViaje.h"
+#include "../DTyENUM/DTUsuarioViaje.h"
 
 class ICalificarUsuario {
 public:    

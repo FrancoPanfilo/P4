@@ -1,10 +1,10 @@
 #ifndef ICONTROLADOR_USUARIOS_H
 #define ICONTROLADOR_USUARIOS_H
 
-#include "DTUsuario.h"
-#include "DTListarViaje.h"
-#include "TipoLibreta.h"
-#include "TipoVehiculo.h"
+#include "../DTyENUM/DTUsuario.h"
+#include "../DTyENUM/DTListarViaje.h"
+#include "../DTyENUM/TipoLibreta.h"
+#include "../DTyENUM/TipoVehiculo.h"
 #include <string>
 #include <set>
 #include <list>

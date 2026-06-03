@@ -1,4 +1,4 @@
-#include "../include/DTDetalleViaje.h"
+#include "../include/DTyENUM/DTDetalleViaje.h"
 
 DTDetalleViaje::DTDetalleViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, DTDetalleVehiculo vehi, std::vector<DTDetalleReserva> res)
     {

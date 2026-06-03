@@ -1,4 +1,4 @@
-#include "../include/DTUsuario.h"
+#include "../include/DTyENUM/DTUsuario.h"
 
 DTUsuario::DTUsuario(std::string nickname, std::string nombre)
     {

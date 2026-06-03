@@ -1,7 +1,7 @@
 #include "../include/Fabrica.h"
-#include "../include/ControladorFechaActual.h"
-#include "../include/ControladorUsuarios.h"
-#include "../include/ControladorViajes.h"
+#include "../include/Controladores/ControladorFechaActual.h"
+#include "../include/Controladores/ControladorUsuarios.h"
+#include "../include/Controladores/ControladorViajes.h"
 
 Fabrica* Fabrica::instancia = nullptr;
 

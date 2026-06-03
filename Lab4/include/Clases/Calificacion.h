@@ -1,7 +1,7 @@
 #ifndef CALIFICACION_H
 #define CALIFICACION_H
 
-#include "DTFecha.h"
+#include "../DTyENUM/DTFecha.h"
 
 class Calificacion {
 private:

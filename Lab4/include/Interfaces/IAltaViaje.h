@@ -4,8 +4,8 @@
 #include <set>
 #include <string>
 
-#include "DTVehiculosConductor.h"
-#include "DTFecha.h"
+#include "../DTyENUM/DTVehiculosConductor.h"
+#include "../DTyENUM/DTFecha.h"
 
 class IAltaViaje {
 public:        

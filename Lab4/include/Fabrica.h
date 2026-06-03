@@ -1,9 +1,9 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
-#include "IControladorFechaActual.h"
-#include "IControladorUsuarios.h"
-#include "IControladorViajes.h"
+#include "../Interfaces/IControladorFechaActual.h"
+#include "../Interfaces/IControladorUsuarios.h"
+#include "../Interfaces/IControladorViajes.h"
 
 class Fabrica {
 private:
