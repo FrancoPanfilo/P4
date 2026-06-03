@@ -10,6 +10,7 @@
 #include "../Clases/Conductor.h"
 #include "../DTyENUM/DTUsuario.h"
 #include "../DTyENUM/TipoLibreta.h"
+#include "../DTyENUM/TipoVehiculo.h"
 
 class ManejadorUsuarios {
 private:
