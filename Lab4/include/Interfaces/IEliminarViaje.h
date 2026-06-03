@@ -3,8 +3,8 @@
 
 #include <set>
 
-#include "DTListarViaje.h"
-#include "DTDetalleViaje.h"
+#include "../DTyENUM/DTListarViaje.h"
+#include "../DTyENUM/DTDetalleViaje.h"
 
 class IEliminarViaje {
 public:        

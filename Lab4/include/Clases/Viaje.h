@@ -1,7 +1,7 @@
 #ifndef VIAJE_H
 #define VIAJE_H
 
-#include "DTFecha.h"
+#include "../DTyENUM/DTFecha.h"
 #include <string>
 
 class Viaje {

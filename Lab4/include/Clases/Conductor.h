@@ -2,7 +2,7 @@
 #define CONDUCTOR_H
 
 #include "Usuario.h"
-#include "TipoLibreta.h"
+#include "./DTyENUM/TipoLibreta.h"
 #include <set>
 
 class Conductor : public Usuario {

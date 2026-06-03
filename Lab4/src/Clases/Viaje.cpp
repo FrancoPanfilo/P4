@@ -1,4 +1,4 @@
-#include "../include/Viaje.h"
+#include "../include/Clases/Viaje.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio)
 {

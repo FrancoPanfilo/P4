@@ -1,7 +1,7 @@
 #ifndef RESERVA_H
 #define RESERVA_H
 
-#include "DTFecha.h"
+#include "../DTyENUM/DTFecha.h"
 
 class Reserva {
 private:

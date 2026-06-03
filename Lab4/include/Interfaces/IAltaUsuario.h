@@ -4,8 +4,8 @@
 #include <set>
 #include <string>
 
-#include "TipoVehiculo.h"
-#include "TipoLibreta.h"
+#include "../DTyENUM/TipoVehiculo.h"
+#include "../DTyENUM/TipoLibreta.h"
 
 class IAltaUsuario {
 public:        

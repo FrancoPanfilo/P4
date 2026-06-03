@@ -1,7 +1,7 @@
 #ifndef VEHICULO_H
 #define VEHICULO_H
 
-#include "TipoVehiculo.h"
+#include "../DTyENUM/TipoVehiculo.h"
 #include <string>
 
 class Vehiculo {
