@@ -6,3 +6,7 @@ Pasajero::Pasajero(std::string nickname, std::string nombre, std::string contras
 }
 
 Pasajero::~Pasajero() {}
+
+std::string::getCI(){
+    return this->ci
+}
