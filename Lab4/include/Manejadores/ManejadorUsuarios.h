@@ -44,7 +44,7 @@ public:
                             std::string modelo,
                             TipoVehiculo tipo);                          
 
-    std::set<DTUsuario> listarPasajeros();
+    std::set<std::string> listarPasajeros();
 
     std::set<DTUsuario> listarUsuarios();
 
