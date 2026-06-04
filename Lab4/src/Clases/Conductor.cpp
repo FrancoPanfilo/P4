@@ -6,3 +6,7 @@ Conductor::Conductor(std::string nickname, std::string nombre, std::string contr
 }
 
 Conductor::~Conductor() {}
+
+Conductor::getLicencias(){
+    return this->libretas;
+}
