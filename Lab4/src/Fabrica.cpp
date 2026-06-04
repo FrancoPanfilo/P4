@@ -18,20 +18,8 @@ IControladorFechaActual* Fabrica::getIControladorFechaActual() {
     return ControladorFechaActual::getInstance();
 }
 
-IControladorUsuarios* Fabrica::getIControladorUsuarios() {
-    return ControladorUsuarios::getInstance();
-}
-
-IControladorViajes* Fabrica::getIControladorViajes() {
-    return ControladorViajes::getInstance();
-}
-
 ICalificarUsuario* Fabrica::getICalificarUsuario() {
     return ControladorUsuarios::getInstance();
-}
-
-IEliminarViaje* Fabrica::getIEliminarViaje() {
-    return ControladorViajes::getInstance();
 }
 
 IAltaUsuario* Fabrica::getIAltaUsuario() {
@@ -43,5 +31,9 @@ IAltaViaje* Fabrica::getIAltaViaje() {
 }
 
 IGenerarReserva* Fabrica::getIGenerarReserva() {
+    return ControladorViajes::getInstance();
+}
+
+IEliminarViaje* Fabrica::getIEliminarViaje() {
     return ControladorViajes::getInstance();
 }
