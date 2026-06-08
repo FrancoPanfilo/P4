@@ -1,18 +1,15 @@
 #include "../../include/Controladores/ControladorUsuarios.h"
 #include "../../include/Manejadores/ManejadorUsuarios.h"
 
-ControladorUsuarios *ControladorUsuarios::instancia = nullptr;
+ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
 
-ControladorUsuarios::ControladorUsuarios()
-{
+ControladorUsuarios::ControladorUsuarios() {
     nicknameMemoria = "";
     codigoMemoria = 0;
 }
 
-ControladorUsuarios *ControladorUsuarios::getInstance()
-{
-    if (instancia == nullptr)
-    {
+ControladorUsuarios* ControladorUsuarios::getInstance() {
+    if (instancia == nullptr) {
         instancia = new ControladorUsuarios();
     }
     return instancia;
@@ -20,59 +17,37 @@ ControladorUsuarios *ControladorUsuarios::getInstance()
 
 bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre,
                                        std::string contrasena, std::string email,
-                                       std::string ci)
-{
+                                       std::string ci) {
     return ManejadorUsuarios::getInstance()->nuevoPasajero(nickname, nombre,
                                                            contrasena, email, ci);
 }
 
 bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre,
                                         std::string contrasena, std::string email,
-                                        std::set<TipoLibreta> libretas)
-{
+                                        std::set<TipoLibreta> libretas) {
     return ManejadorUsuarios::getInstance()->nuevoConductor(nickname, nombre,
                                                             contrasena, email, libretas);
 }
 
-std::set<DTUsuario> ControladorUsuarios::listarUsuarios()
-{
+int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula,
+                                           int capacidad, std::string marca,
+                                           std::string modelo, TipoVehiculo tipo) {
+    return ManejadorUsuarios::getInstance()->registrarVehiculo(nickname, matricula,
+                                                               capacidad, marca, modelo, tipo);
+}
+
+std::set<DTUsuario> ControladorUsuarios::listarUsuarios() {
     return ManejadorUsuarios::getInstance()->listarUsuarios();
 }
 
-std::set<DTListarViaje> ControladorUsuarios::listarViajes()
-{
-    // TODO: requiere ManejadorViajes
+std::set<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
     return std::set<DTListarViaje>();
 }
 
-std::set<std::string> ControladorUsuarios::listarPasajeros()
-{
-    std::set<std::string> resultado;
-    for (DTUsuario dt : ManejadorUsuarios::getInstance()->listarPasajeros())
-    {
-        resultado.insert(dt.getNickname());
-    }
-    return resultado;
+std::set<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo) {
+    return std::set<DTUsuarioViaje>();
 }
 
-bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion)
-{
-    // TODO: requiere ManejadorViajes
-
+bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
     return false;
-}
-
-std::set<DTVehiculosConductor> ControladorUsuarios::listarVehiculosConductor(std::string nickname)
-{
-    // TODO: se le delega a conductor (?)
-
-    return std::set<DTVehiculosConductor>();
-}
-
-int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula,
-                                           int capacidad, std::string marca,
-                                           std::string modelo, TipoVehiculo tipo)
-{
-    return ManejadorUsuarios::getInstance()->registrarVehiculo(nickname, matricula,
-                                                               capacidad, marca, modelo, tipo);
 }
