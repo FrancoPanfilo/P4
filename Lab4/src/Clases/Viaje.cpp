@@ -1,4 +1,4 @@
-#include "../include/Clases/Viaje.h"
+#include "../../include/Clases/Viaje.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio)
 {
@@ -12,11 +12,11 @@ Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino,
 
 Viaje::~Viaje() {}
 
-Viaje::getFecha(){
+DTFecha Viaje::getFecha(){
     return this->fecha;
 }
 
-Viaje::obtenerCodigo(){
+int Viaje::obtenerCodigo(){
     return this->codigo;
 }
 

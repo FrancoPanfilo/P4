@@ -1,4 +1,4 @@
-#include "../include/Clases/Reserva.h"
+#include "../../include/Clases/Reserva.h"
 
 Reserva::Reserva(int asientosReservados, DTFecha fecha) {
     this->asientosReservados = asientosReservados;
