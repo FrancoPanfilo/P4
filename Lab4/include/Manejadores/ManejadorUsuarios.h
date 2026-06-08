@@ -16,7 +16,7 @@ class ManejadorUsuarios {
 private:
     static ManejadorUsuarios* instancia;
 
-    std::map<std::string, Usuario*> usuarios;
+    std::map<std::string, Usuario*> usuarios; //colección de usuarios
 
     ManejadorUsuarios();
 
