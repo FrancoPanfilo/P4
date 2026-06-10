@@ -22,3 +22,24 @@ void Conductor::agregarVehiculo(Vehiculo* v) {
 std::set<TipoLibreta> Conductor::getLicencias() {
     return libretas;
 }
+
+bool Conductor::hayViajeFechaConductor(DTFecha fecha){
+    for(it=vehiculos.begin(); it!=vehiculos.end(); ++it){
+        for(iv=it->viajes.begin(); iv!=it->viajes.end(); ++iv){
+            if (iv->fecha == fecha){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+std::set<DTVehiculosConductor> Conductor::listarVehiculos() { 
+    std::set<DTVehiculosConductor> dtveh;
+    DTVehiculoConductor veh;
+    for (it = vehiculos.begin(); it != vehiculos.end(); ++it) {
+        veh = DTVehiculoConductor(it->getMatricula(), it->getModelo(), it->getCapacidad());
+        dtveh.insert(veh);
+    }
+    return dtveh;
+}
