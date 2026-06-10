@@ -5,11 +5,12 @@
 #include <set>
 #include <map>
 
+#include "../Clases/Reserva.h"
 #include "../Clases/Viaje.h"
 #include "../DTyENUM/DTFecha.h"
 #include "../DTyENUM/DTConsultaViaje.h"
 
-class ManejadorViaje {
+class ManejadorViajes {
 private:
     static ManejadorViajes* instancia;
 
@@ -28,11 +29,9 @@ public:
         std::string destino,
         int asientos
     );
-
-    //float obtenerCalificacion(std::string nickname);
     
-    //void agregarCalificacion(int codigoViaje, int puntaje);
-
+    Reserva* obtenerCalificacionUsuario(int codigoViaje, std::string nicknameCalificado);
+    
     Viaje* crearViaje(
         int codigo,
         DTFecha fecha,
