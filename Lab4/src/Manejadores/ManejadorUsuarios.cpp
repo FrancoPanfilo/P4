@@ -23,7 +23,7 @@ bool ManejadorUsuarios::nuevoPasajero(std::string nickname,
     // (altaPasajero DCM)
     
     // 1.1: e := exists(nickname)
-    bool e = usuarios.find(nickname) != usuarios.end();
+    bool e = usuarios.find(nickname) != usuarios.end(); //.end() apunta justo despues del ultimo elemento
 
     // Si e == TRUE retorna FALSE
     if (e) { return false; }
@@ -75,11 +75,11 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
     Usuario* u = getUsuario(nickname);
 
     if (u == nullptr) {
-        return -2; // Por seguridad: no existe el usuario
+        return -2; // No existe el usuario
     }
 
     Conductor* c = dynamic_cast<Conductor*>(u);
-    //Performs checks at runtime. If the object being pointed to is not of the target type (or a valid derived type), the cast returns nullptr.
+    //Performs checks at runtime. If the object being pointed to is not of the target type (or a valid derived type), the cast returns nullptr.    
 
     if (c == nullptr) {
         return -2; // Existe usuario, pero no es conductor
@@ -88,18 +88,16 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
     // 2.2: tl := tieneLibreta(tipo)
     bool tieneLibreta = c->tieneLibreta(tipo);
 
-    if (!tieneLibreta) {
-        return -2;
-    }
+    if (!tieneLibreta) { return -2; }
+    // No tiene tipo de licencia para el vehículo
 
     // 2.4: nuevoVehiculo(...)
     ManejadorVehiculos* mv = ManejadorVehiculos::getInstance();
 
     Vehiculo* v = mv->nuevoVehiculo(matricula, capacidad, marca, modelo, tipo);
 
-    if (v == nullptr) {
-        return -1; // Matrícula repetida u otro error al crear
-    }
+    if (v == nullptr) { return -1; }
+    // Matrícula repetida u otro error al crear
 
     // 2.4.3.1: add(v)
     c->agregarVehiculo(v);

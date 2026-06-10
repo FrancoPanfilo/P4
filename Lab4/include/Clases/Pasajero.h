@@ -11,7 +11,6 @@ private:
 public:
     Pasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string documento);
     ~Pasajero();
-    getCI();
     std::string getCI();
 };
 

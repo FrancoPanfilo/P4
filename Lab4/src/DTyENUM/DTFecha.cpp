@@ -1,4 +1,4 @@
-#include "../include/DTyENUM/DTFecha.h"
+#include "../../include/DTyENUM/DTFecha.h"
 
 DTFecha::DTFecha() {
     this->dia = 1;

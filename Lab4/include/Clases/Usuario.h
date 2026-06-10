@@ -3,6 +3,8 @@
 
 #include <string>
 
+class DTUsuario;
+
 class Usuario {
 protected:
     std::string nickname;
@@ -14,9 +16,10 @@ public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
     virtual ~Usuario();
 
-    getNickname();
-    getNombre();
-    getEmail();
+    std::string getNickname();
+    std::string getNombre();
+    std::string getEmail();
+    DTUsuario getDTUsuario();
 };
 
 #endif

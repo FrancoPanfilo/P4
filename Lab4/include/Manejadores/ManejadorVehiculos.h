@@ -4,7 +4,8 @@
 #include <string>
 #include <map>
 
-#include "Vehiculo.h"
+#include "../Clases/Vehiculo.h"
+#include "../DTyENUM/TipoVehiculo.h"
 
 class ManejadorVehiculos {
 private:
@@ -23,9 +24,12 @@ public:
 
     void eliminarVehiculo(std::string matricula);
 
-    getVehiculo(std::string matricula);  
+    Vehiculo* getVehiculo(std::string matricula);
 
-    ~ManejadorVehiculo();
+    Vehiculo* nuevoVehiculo(std::string matricula, int capacidad,
+                            std::string marca, std::string modelo, TipoVehiculo tipo);
+
+    ~ManejadorVehiculos();
 };
 
 #endif
