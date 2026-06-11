@@ -3,7 +3,7 @@
 
 #include <map>
 #include <string>
-#include <set>
+#include <vector>
 
 #include "../Clases/Usuario.h"
 #include "../Clases/Pasajero.h"
@@ -35,7 +35,7 @@ public:
                             std::string nombre,
                             std::string contrasena,
                             std::string email,
-                            std::set<TipoLibreta> libretas);
+                            std::vector<TipoLibreta> libretas);
 
     int registrarVehiculo(std::string nickname,
                             std::string matricula,
@@ -44,9 +44,9 @@ public:
                             std::string modelo,
                             TipoVehiculo tipo);                          
 
-    std::set<std::string> listarPasajeros();
+    std::vector<std::string> listarPasajeros();
 
-    std::set<DTUsuario> listarUsuarios();
+    std::vector<DTUsuario> listarUsuarios();
 
     Pasajero* findPasajero(std::string nickname);
         

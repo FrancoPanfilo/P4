@@ -17,8 +17,8 @@ ControladorViajes* ControladorViajes::getInstance() {
     return instancia;
 }
 
-std::set<DTVehiculosConductor> ControladorViajes::listarVehiculosConductor(std::string nickname) {
-    return std::set<DTVehiculosConductor>();
+std::vector<DTVehiculosConductor> ControladorViajes::listarVehiculosConductor(std::string nickname) {
+    return std::vector<DTVehiculosConductor>();
 }
 
 bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen,
@@ -26,21 +26,21 @@ bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::str
     return false;
 }
 
-std::set<std::string> ControladorViajes::listarPasajeros() {
+std::vector<std::string> ControladorViajes::listarPasajeros() {
     return ManejadorUsuarios::getInstance()->listarPasajeros();
 }
 
-std::set<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen,
+std::vector<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen,
                                                              std::string destino, int asientos) {
-    return std::set<DTConsultaViaje>();
+    return std::vector<DTConsultaViaje>();
 }
 
 bool ControladorViajes::generarReserva(std::string nickname, int codigo, int asientos) {
     return false;
 }
 
-std::set<DTListarViaje> ControladorViajes::listarViajes() {
-    return std::set<DTListarViaje>();
+std::vector<DTListarViaje> ControladorViajes::listarViajes() {
+    return std::vector<DTListarViaje>();
 }
 
 DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {

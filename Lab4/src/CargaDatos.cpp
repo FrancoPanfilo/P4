@@ -1,6 +1,5 @@
 #include "../include/CargaDatos.h"
 #include <iostream>
-#include <set>
 #include "../include/DTyENUM/TipoLibreta.h"
 #include "../include/Interfaces/IAltaUsuario.h"
 #include "../include/Interfaces/ICalificarUsuario.h"
@@ -33,26 +32,26 @@ void CargaDatos::cargarDatos() {
 
     //conductores
 
-    std::set<TipoLibreta> l;
+    std::vector<TipoLibreta> l;
 
-    l.insert(TipoLibreta::AutoAmateur);
+    l.push_back(TipoLibreta::AutoAmateur);
     contusuario->altaConductor("matil92", "Matias Lopez", "m4t14s92", "matias.lopez.92@gmail.com", l);
     l.clear();   
     
-    l.insert(TipoLibreta::AutoProfesional);
+    l.push_back(TipoLibreta::AutoProfesional);
     contusuario->altaConductor("ana_silva", "Ana Silva", "asilva2026", "anasilva.m@outlook.com", l);
     l.clear();   
     
-    l.insert(TipoLibreta::MotoAmateur);
+    l.push_back(TipoLibreta::MotoAmateur);
     contusuario->altaConductor("greg_m", "Diego Rodriguez", "drodriguez8", "diegorodriguez@fing.edu.uy", l);
     l.clear();   
     
-    l.insert(TipoLibreta::MotoProfesional);
+    l.push_back(TipoLibreta::MotoProfesional);
     contusuario->altaConductor("lau_vaz", "Laura Vazquez", "lvazquezQ7", "laura.vazquez@fing.edu.uy", l);
     l.clear();   
     
-    l.insert(TipoLibreta::AutoProfesional);
-    l.insert(TipoLibreta::MotoAmateur);
+    l.push_back(TipoLibreta::AutoProfesional);
+    l.push_back(TipoLibreta::MotoAmateur);
     contusuario->altaConductor("carlos_r", "Carlos Rossi", "crossi99x", "carlos.rossi.uy@gmail.com", l);
     l.clear();   
 

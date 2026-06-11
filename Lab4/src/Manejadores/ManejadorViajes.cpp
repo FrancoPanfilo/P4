@@ -21,13 +21,13 @@ Viaje* ManejadorViajes::obtenerViaje(int codigo) {
     return it->second;
 }
 
-std::set<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
+std::vector<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
 
     //Devuelve la información de los viajes que cumplen con las condiciones de búsqueda con la información del conductor y vehículo del mismo.
 
     // (DSC Generar Reserva: DCM consultarViajes )    
 
-    std::set<DTConsultaViaje> resultado;
+    std::vector<DTConsultaViaje> resultado;
 
     // 1.1* [foreach]: v := next()
     for (auto it = viajes.begin(); it != viajes.end(); ++it) {
@@ -39,7 +39,7 @@ std::set<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std::s
         // 1.3* [cumple]
         if (cumple) {
             DTConsultaViaje dtcv = v->getDTConsultaViaje(asientos);
-            resultado.insert(dtcv);
+            resultado.push_back(dtcv);
         }
     }
 
@@ -58,7 +58,7 @@ Reserva* ManejadorViajes::obtenerCalificacionUsuario(int codigoViaje, std::strin
     if (v == nullptr) { return nullptr; }
 
     // 2.1: getReservas()
-    std::set<Reserva*> reservas = v->getReservas();
+    std::vector<Reserva*> reservas = v->getReservas();
 
     // 2.2* [foreach] r := next()
     for (auto it = reservas.begin(); it != reservas.end(); ++it) {

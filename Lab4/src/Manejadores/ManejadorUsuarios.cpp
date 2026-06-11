@@ -42,7 +42,7 @@ bool ManejadorUsuarios::nuevoConductor(std::string nickname,
                                         std::string nombre,
                                         std::string contrasena,
                                         std::string email,
-                                        std::set<TipoLibreta> libretas) {
+                                        std::vector<TipoLibreta> libretas) {
     // (altaConductor DCM)
     
     // 1.1: e := exists(nickname)
@@ -105,11 +105,11 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
     return 0;
 }
 
-std::set<std::string> ManejadorUsuarios::listarPasajeros() {
+std::vector<std::string> ManejadorUsuarios::listarPasajeros() {
 
   // (listarPasajeros DCM)
 
-  std::set<std::string> resultado;
+  std::vector<std::string> resultado;
 
   // 1* [foreach]: u := next()
     for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
@@ -119,18 +119,18 @@ std::set<std::string> ManejadorUsuarios::listarPasajeros() {
 
         // 2* nick := getNickname() : String
         if (p != nullptr) {
-            resultado.insert(p->getNickname());
+            resultado.push_back(p->getNickname());
         }
     }
 
     return resultado;
 }
 
-std::set<DTUsuario> ManejadorUsuarios::listarUsuarios() {
+std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
 
     // (listarUsuarios DCM)
 
-    std::set<DTUsuario> resultado;
+    std::vector<DTUsuario> resultado;
 
     // 1* [foreach]: u := next()
     for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
@@ -139,18 +139,18 @@ std::set<DTUsuario> ManejadorUsuarios::listarUsuarios() {
         // 2* DTUsuario := getDTUsuario()
         DTUsuario dt = u->getDTUsuario();
 
-        resultado.insert(dt);
+        resultado.push_back(dt);
     }
 
     return resultado;
 }
 
 /*
-std::set<DTUsuario> ManejadorUsuarios::listarUsuarios() {
-    std::set<DTUsuario> resultado;
+std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
+    std::vector<DTUsuario> resultado;
     for (std::pair<std::string, Usuario*> par : usuarios) {
         Usuario* u = par.second;
-        resultado.insert(DTUsuario(u->getNickname(), u->getNombre()));
+        resultado.push_back(DTUsuario(u->getNickname(), u->getNombre()));
     }
     return resultado;
 }

@@ -17,3 +17,11 @@ std::string Vehiculo::getMatricula() {
 int Vehiculo::getCapacidad() {
     return capacidad;
 }
+
+void Vehiculo::agregarViaje(Viaje* viaje) {
+    viajes.push_back(viaje);
+}
+
+std::list<Viaje*> Vehiculo::getViajes() {
+    return viajes;
+}

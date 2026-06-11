@@ -2,7 +2,7 @@
 #define MANEJADOR_VIAJE_H
 
 #include <string>
-#include <set>
+#include <vector>
 #include <map>
 
 #include "../Clases/Reserva.h"
@@ -23,7 +23,7 @@ public:
 
     Viaje* obtenerViaje(int codigo);
 
-    std::set<DTConsultaViaje> consultarViajes(
+    std::vector<DTConsultaViaje> consultarViajes(
         DTFecha fecha,
         std::string origen,
         std::string destino,
