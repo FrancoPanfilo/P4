@@ -11,10 +11,11 @@
 
 class Vehiculo;
 
-class Conductor : public Usuario {
+class Conductor : public Usuario
+{
 private:
     std::set<TipoLibreta> libretas;
-    std::list<Vehiculo*> vehiculos;
+    std::list<Vehiculo *> vehiculos;
 
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
