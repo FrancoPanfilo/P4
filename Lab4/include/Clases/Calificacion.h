@@ -11,6 +11,8 @@ private:
 public:
     Calificacion(DTFecha fecha, int puntaje);
     ~Calificacion();
+
+    int getPuntaje();
 };
 
 #endif
