@@ -24,7 +24,7 @@ bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre,
 
 bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre,
                                         std::string contrasena, std::string email,
-                                        std::set<TipoLibreta> libretas) {
+                                        std::vector<TipoLibreta> libretas) {
     return ManejadorUsuarios::getInstance()->nuevoConductor(nickname, nombre,
                                                             contrasena, email, libretas);
 }
@@ -36,16 +36,16 @@ int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string mat
                                                                capacidad, marca, modelo, tipo);
 }
 
-std::set<DTUsuario> ControladorUsuarios::listarUsuarios() {
+std::vector<DTUsuario> ControladorUsuarios::listarUsuarios() {
     return ManejadorUsuarios::getInstance()->listarUsuarios();
 }
 
-std::set<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
-    return std::set<DTListarViaje>();
+std::vector<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
+    return std::vector<DTListarViaje>();
 }
 
-std::set<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo) {
-    return std::set<DTUsuarioViaje>();
+std::vector<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo) {
+    return std::vector<DTUsuarioViaje>();
 }
 
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {

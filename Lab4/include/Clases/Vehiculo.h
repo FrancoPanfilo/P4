@@ -3,6 +3,8 @@
 
 #include "../DTyENUM/TipoVehiculo.h"
 #include <string>
+#include <vector>
+#include "Viaje.h"
 
 class Vehiculo {
 private:
@@ -13,12 +15,18 @@ private:
     TipoVehiculo tipo;
     std::list<Viaje*> viajes;
 
+
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
     ~Vehiculo();
 
     std::string getMatricula();
     int getCapacidad();
+
+    std::string getMarca();
+    std::string getModelo();
+    TipoVehiculo getTipo();
+    
 };
 
 #endif

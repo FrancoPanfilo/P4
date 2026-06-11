@@ -25,3 +25,5 @@ std::string Usuario::getEmail() {
 DTUsuario Usuario::getDTUsuario() {
     return DTUsuario(nickname, nombre);
 }
+
+//
