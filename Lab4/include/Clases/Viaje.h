@@ -2,13 +2,17 @@
 #define VIAJE_H
 
 #include "../DTyENUM/DTFecha.h"
-#include "Vehiculo.h"
+#include "../DTyENUM/DTDetalleVehiculo.h"
+#include "../DTyENUM/DTDetalleReserva.h"
+#include "../DTyENUM/DTConsultaViaje.h"
 #include <string>
 #include <vector>
+
+class Vehiculo;
 class Reserva;
 
-
-class Viaje {
+class Viaje
+{
 private:
     int codigo;
     DTFecha fecha;
@@ -17,9 +21,8 @@ private:
     int asientosPublicados;
     float precio;
 
-    Vehiculo* vehiculo;
-    std::vector<Reserva*> reservas;
-
+    Vehiculo *vehiculo;
+    std::vector<Reserva *> reservas;
 
 public:
     Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
@@ -27,10 +30,12 @@ public:
     int obtenerCodigo();
     DTFecha getFecha();
 
-    Vehiculo* getVehiculo();
-    void agregarReserva(Reserva* reserva);
-    std::vector<Reserva*> getReservas();
+    DTDetalleVehiculo getVehiculo();
+    void agregarReserva(Reserva *reserva);
+    std::vector<DTDetalleReserva> getReservas();
 
+    bool cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos);
+    DTConsultaViaje getDTConsultaViaje(int asientos);
 };
 
 #endif

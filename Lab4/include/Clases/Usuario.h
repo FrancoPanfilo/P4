@@ -5,13 +5,14 @@
 
 class DTUsuario;
 
-class Usuario {
+class Usuario
+{
 protected:
     std::string nickname;
     std::string nombre;
     std::string email;
     std::string contrasena;
-
+    // vincular a calificaciones
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
     virtual ~Usuario();

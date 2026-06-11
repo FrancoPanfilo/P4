@@ -4,19 +4,21 @@
 #include "../DTyENUM/DTFecha.h"
 class Pasajero;
 
-class Reserva {
+class Reserva
+{
 private:
     int asientosReservados;
     DTFecha fecha;
 
-    Pasajero* pasajero;
+    Pasajero *pasajero;
 
 public:
     Reserva(int asientosReservados, DTFecha fecha);
     ~Reserva();
     int getAsientosReservados();
+    DTFecha getFecha();
 
-    Pasajero* getPasajero();
+    Pasajero *getPasajero();
 };
 
 #endif

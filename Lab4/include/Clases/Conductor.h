@@ -11,18 +11,19 @@
 
 class Vehiculo;
 
-class Conductor : public Usuario {
+class Conductor : public Usuario
+{
 private:
     std::vector<TipoLibreta> libretas;
-    std::list<Vehiculo*> vehiculos;
+    std::list<Vehiculo *> vehiculos;
 
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::vector<TipoLibreta> libs);
     ~Conductor();
-    bool tieneLibreta(TipoLibreta tipo);
-    DTVehiculo listarVehiculos();
-    bool hayViajeFechaConductor(DTFecha fecha);
+    bool tieneLibreta(TipoVehiculo tipo);
+    std::vector<DTVehiculosConductor> listarVehiculosConductor();
     std::vector<TipoLibreta> getLicencias();
+    void agregarVehiculo(Vehiculo *v);
 };
 
 #endif

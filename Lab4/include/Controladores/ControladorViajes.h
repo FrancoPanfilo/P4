@@ -4,28 +4,29 @@
 #include "../Interfaces/IAltaViaje.h"
 #include "../Interfaces/IGenerarReserva.h"
 #include "../Interfaces/IEliminarViaje.h"
-
-class ControladorViajes : public IAltaViaje, public IGenerarReserva, public IEliminarViaje {
+#include <vector>
+class ControladorViajes : public IAltaViaje, public IGenerarReserva, public IEliminarViaje
+{
 private:
-    static ControladorViajes* instancia;
+    static ControladorViajes *instancia;
 
     int codigoMemoria;
 
     ControladorViajes();
 
 public:
-    static ControladorViajes* getInstance();
+    static ControladorViajes *getInstance();
 
-    std::set<DTVehiculosConductor> listarVehiculosConductor(std::string nickname);
+    std::vector<DTVehiculosConductor> listarVehiculosConductor(std::string nickname);
     bool altaViaje(std::string matricula, DTFecha fecha, std::string origen,
                    std::string destino, int asientos, float precio);
 
-    std::set<std::string> listarPasajeros();
-    std::set<DTConsultaViaje> consultarViajes(DTFecha fecha, std::string origen,
-                                              std::string destino, int asientos);
+    std::vector<std::string> listarPasajeros();
+    std::vector<DTConsultaViaje> consultarViajes(DTFecha fecha, std::string origen,
+                                                 std::string destino, int asientos);
     bool generarReserva(std::string nickname, int codigo, int asientos);
 
-    std::set<DTListarViaje> listarViajes();
+    std::vector<DTListarViaje> listarViajes();
     DTDetalleViaje detalleViaje(int codigo);
     void eliminarViaje();
     void cancelarEliminarViaje();

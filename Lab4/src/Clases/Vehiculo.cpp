@@ -18,6 +18,18 @@ int Vehiculo::getCapacidad() {
     return capacidad;
 }
 
+std::string Vehiculo::getMarca() {
+    return marca;
+}
+
+std::string Vehiculo::getModelo() {
+    return modelo;
+}
+
+TipoVehiculo Vehiculo::getTipo() {
+    return tipo;
+}
+
 void Vehiculo::agregarViaje(Viaje* viaje) {
     viajes.push_back(viaje);
 }
