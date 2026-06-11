@@ -12,45 +12,46 @@
 #include "../DTyENUM/TipoLibreta.h"
 #include "../DTyENUM/TipoVehiculo.h"
 
-class ManejadorUsuarios {
+class ManejadorUsuarios
+{
 private:
-    static ManejadorUsuarios* instancia;
+    static ManejadorUsuarios *instancia;
 
-    std::map<std::string, Usuario*> usuarios; //colección de usuarios
+    std::map<std::string, Usuario *> usuarios; // colección de usuarios
 
     ManejadorUsuarios();
 
 public:
-    static ManejadorUsuarios* getInstance();
+    static ManejadorUsuarios *getInstance();
 
-    //bool existeUsuario(std::string nickname); //posible    
+    // bool existeUsuario(std::string nickname); //posible
 
     bool nuevoPasajero(std::string nickname,
-                            std::string nombre,
-                            std::string contrasena,
-                            std::string email,
-                            std::string ci);
+                       std::string nombre,
+                       std::string contrasena,
+                       std::string email,
+                       std::string ci);
 
     bool nuevoConductor(std::string nickname,
-                            std::string nombre,
-                            std::string contrasena,
-                            std::string email,
-                            std::vector<TipoLibreta> libretas);
+                        std::string nombre,
+                        std::string contrasena,
+                        std::string email,
+                        std::vector<TipoLibreta> libretas);
 
     int registrarVehiculo(std::string nickname,
-                            std::string matricula,
-                            int capacidad,
-                            std::string marca,
-                            std::string modelo,
-                            TipoVehiculo tipo);                          
+                          std::string matricula,
+                          int capacidad,
+                          std::string marca,
+                          std::string modelo,
+                          TipoVehiculo tipo);
 
     std::vector<std::string> listarPasajeros();
 
     std::vector<DTUsuario> listarUsuarios();
 
-    Pasajero* findPasajero(std::string nickname);
-        
-    Usuario* getUsuario(std::string nickname);     
+    Pasajero *findPasajero(std::string nickname);
+
+    Usuario *getUsuario(std::string nickname);
 
     ~ManejadorUsuarios();
 };

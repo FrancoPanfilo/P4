@@ -14,7 +14,6 @@ private:
     std::string marca;
     std::string modelo;
     TipoVehiculo tipo;
-    std::list<Viaje*> viajes;
 
     std::list<Viaje*> viajes;
 
