@@ -1,6 +1,11 @@
 #include "../../include/Controladores/ControladorUsuarios.h"
 #include "../../include/Manejadores/ManejadorUsuarios.h"
 
+//--
+#include "../../include/Manejadores/ManejadorViajes.h"
+#include "../../include/Controladores/ControladorFechaActual.h"
+//--
+
 ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
 
 ControladorUsuarios::ControladorUsuarios() {
@@ -48,6 +53,37 @@ std::vector<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo)
     return std::vector<DTUsuarioViaje>();
 }
 
-bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
-    return false;
+bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion)
+{
+    
+    if (calificacion < 1 || calificacion > 5) { return false; } //valida el puntaje
+
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    ManejadorViajes* mv = ManejadorViajes::getInstance();
+    
+    Usuario* usuarioCalificador = mu->getUsuario(nicknameMemoria);  //busca usuario calificador
+    Usuario* usuarioCalificado = mu->getUsuario(nicknameCalificado); //busca usuario calificado
+
+    if (usuarioCalificador == nullptr || usuarioCalificado == nullptr) { return false; } //usuario no encotrado retorna false
+
+    if (usuarioCalificador->getNickname() == usuarioCalificado->getNickname()) { return false; } //evita autocalificación
+
+    //busca la reserva del usuario calificado en el viaje recordado
+    Reserva* reserva = mv->getReservaUsuarioCalificado(codigoMemoria, nicknameCalificado);
+
+    if (reserva == nullptr) { return false; } //si no hay reserva retorna false
+
+    //obtengo fecha actual con controlador
+    DTFecha fechaActual = ControladorFechaActual::getInstance()->getFecha();
+
+    //crea la calificación
+    Calificacion* nuevaCalificacion = new Calificacion(fechaActual, calificacion, usuarioCalificador, reserva);
+
+    //la agrega al usuario calificado
+    usuarioCalificador->agregarCalificacion(nuevaCalificacion);
+
+    nicknameMemoria = "";
+    codigoMemoria = 0;
+
+    return true;
 }

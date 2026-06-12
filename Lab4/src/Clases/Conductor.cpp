@@ -54,5 +54,15 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha)
 
 float Conductor::getCalProm()
 {
-    return 0.0f;
+    //---
+    if (calificacionesRecibidas.empty()){ return 0.0f; }
+        
+    float suma = 0;
+
+    for (Calificacion* c : calificacionesRecibidas) {
+        suma += c->getPuntaje();
+    }
+
+    return suma / calificacionesRecibidas.size();
+    //---
 }

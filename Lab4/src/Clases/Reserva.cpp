@@ -27,3 +27,9 @@ void Reserva::setPasajero(Pasajero *pasajero)
 {
     this->pasajero = pasajero;
 }
+
+//--
+bool Reserva::reservaEsDeUsuario(std::string nickname) {
+    return ((this->pasajero->getNickname()) == nickname);
+}
+//--

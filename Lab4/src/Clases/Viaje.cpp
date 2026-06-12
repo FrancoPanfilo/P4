@@ -33,7 +33,8 @@ void Viaje::agregarReserva(Reserva *reserva)
     this->reservas.push_back(reserva);
 }
 
-std::vector<DTDetalleReserva> Viaje::getReservas()
+// ¿Dónde se usa?
+std::vector<DTDetalleReserva> Viaje::getDTReservas()
 {
     std::vector<DTDetalleReserva> dtReservas;
     for (Reserva *r : reservas)
@@ -42,6 +43,11 @@ std::vector<DTDetalleReserva> Viaje::getReservas()
         dtReservas.push_back(dtr);
     }
     return dtReservas;
+}
+
+std::vector<Reserva*> Viaje::getReservas()
+{
+    return reservas;
 }
 
 DTDetalleVehiculo Viaje::getVehiculo()

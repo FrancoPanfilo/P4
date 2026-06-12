@@ -32,7 +32,7 @@ public:
         int asientos
     );
 
-    Reserva* obtenerCalificacionUsuario(int codigoViaje, std::string nicknameCalificado);
+    Reserva* getReservaUsuarioCalificado(int codigoViaje, std::string nicknameCalificado);
 
     Viaje* crearViaje(
         Vehiculo* vehiculo,

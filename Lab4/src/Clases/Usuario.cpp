@@ -26,4 +26,8 @@ DTUsuario Usuario::getDTUsuario() {
     return DTUsuario(nickname, nombre);
 }
 
-//
+//--
+void Usuario::agregarCalificacion(Calificacion* calificacion){
+    calificacionesRecibidas.push_back(calificacion);
+}
+//--

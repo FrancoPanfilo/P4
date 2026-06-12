@@ -46,11 +46,28 @@ std::vector<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std
     return resultado;
 }
 
-Reserva* ManejadorViajes::obtenerCalificacionUsuario(int codigoViaje, std::string nicknameCalificado) {
+Reserva* ManejadorViajes::getReservaUsuarioCalificado(int codigoViaje, std::string nicknameCalificado) {
 
     //Busca la reserva del usuario calificado dentro del viaje recordado en memoria, y la retorna.
+    // (DSC Calificar Usuarios: DCM calificarUsuario: getReservaUsuarioCalificado)
 
-    // (DSC Calificar Usuarios: DCM calificarUsuario: obtenerCalificacionUsuario)
+    // 2: v := find(codigo)
+    Viaje* v = obtenerViaje(codigoViaje);
+
+    if (v == nullptr) { return nullptr; }
+
+    // 2.1: getReservas()
+    std::vector<Reserva*> reservas = v->getReservas();
+
+    // 2.2* [foreach] r := next()
+    for (auto it = reservas.begin(); it != reservas.end(); ++it) {
+        Reserva* r = *it;
+
+        // 2.2.1: reservaEsDeUsuario(nicknameCalificado)
+        if (r->reservaEsDeUsuario(nicknameCalificado)) {
+            return r;
+        }
+    }
 
     return nullptr;
 }

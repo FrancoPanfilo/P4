@@ -34,7 +34,10 @@ public:
 
     DTDetalleVehiculo getVehiculo();
     void agregarReserva(Reserva *reserva);
-    std::vector<DTDetalleReserva> getReservas();
+    //--
+    std::vector<Reserva*> getReservas();
+    //--
+    std::vector<DTDetalleReserva> getDTReservas();
 
     bool cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos);
     DTConsultaViaje getDTConsultaViaje(int asientos);
