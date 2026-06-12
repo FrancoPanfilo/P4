@@ -24,6 +24,8 @@ public:
     std::vector<DTVehiculosConductor> listarVehiculosConductor();
     std::vector<TipoLibreta> getLicencias();
     void agregarVehiculo(Vehiculo *v);
+    bool hayViajesFechaConductor(DTFecha fecha);
+    float getCalProm();
 };
 
 #endif

@@ -3,14 +3,17 @@
 #include "../../include/Clases/Reserva.h"
 #include "../../include/Clases/Pasajero.h"
 
-Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio)
+int Viaje::ultimoCodigo = 0;
+
+Viaje::Viaje(Vehiculo *vehiculo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio)
 {
-    this->codigo = codigo;
+    this->codigo = ++ultimoCodigo;
     this->fecha = fecha;
     this->origen = origen;
     this->destino = destino;
     this->asientosPublicados = asientosPublicados;
     this->precio = precio;
+    this->vehiculo = vehiculo;
 }
 
 Viaje::~Viaje() {}
@@ -49,10 +52,35 @@ DTDetalleVehiculo Viaje::getVehiculo()
 
 bool Viaje::cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos)
 {
-    return false;
+    int reservados = 0;
+    for (Reserva *r : reservas)
+    {
+        reservados += r->getAsientosReservados();
+    }
+
+    return reservados + asientos <= asientosPublicados &&
+           this->fecha == fecha &&
+           this->origen == origen &&
+           this->destino == destino;
 }
 
 DTConsultaViaje Viaje::getDTConsultaViaje(int asientos)
 {
-    return DTConsultaViaje(0, "", "", "", 0.0f, 0.0f);
+    return DTConsultaViaje(codigo,
+                           vehiculo->getMarca(),
+                           vehiculo->getModelo(),
+                           vehiculo->getNombreConductor(),
+                           vehiculo->getCalPromConductor(),
+                           precio * asientos);
+}
+
+bool Viaje::puedeReservar(int asientos)
+{
+    int reservados = 0;
+    for (Reserva *r : reservas)
+    {
+        reservados += r->getAsientosReservados();
+    }
+
+    return reservados + asientos <= asientosPublicados;
 }

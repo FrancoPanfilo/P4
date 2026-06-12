@@ -10,3 +10,7 @@ Pasajero::~Pasajero() {}
 std::string Pasajero::getCI(){
     return this->ci;
 }
+
+void Pasajero::agregarReserva(Reserva *reserva) {
+    this->reservas.push_back(reserva);
+}

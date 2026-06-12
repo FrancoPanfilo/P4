@@ -2,10 +2,12 @@
 #define VEHICULO_H
 
 #include "../DTyENUM/TipoVehiculo.h"
+#include "../DTyENUM/DTFecha.h"
 #include <string>
 #include <list>
 
 class Viaje;
+class Conductor;
 
 class Vehiculo {
 private:
@@ -15,6 +17,7 @@ private:
     std::string modelo;
     TipoVehiculo tipo;
 
+    Conductor *conductor;
     std::list<Viaje*> viajes;
 
 public:
@@ -26,9 +29,15 @@ public:
     std::string getMarca();
     std::string getModelo();
     TipoVehiculo getTipo();
+    std::string getNombreConductor();
+    float getCalPromConductor();
 
-    void agregarViaje(Viaje* viaje);
+    void setConductor(Conductor *conductor);
+    void asociarViaje(Viaje* viaje);
     std::list<Viaje*> getViajes();
+
+    bool hayViajesConductor(DTFecha fecha);
+    bool hayViajesFecha(DTFecha fecha);
 };
 
 #endif

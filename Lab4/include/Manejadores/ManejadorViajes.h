@@ -10,6 +10,8 @@
 #include "../DTyENUM/DTFecha.h"
 #include "../DTyENUM/DTConsultaViaje.h"
 
+class Vehiculo;
+
 class ManejadorViajes {
 private:
     static ManejadorViajes* instancia;
@@ -29,16 +31,16 @@ public:
         std::string destino,
         int asientos
     );
-    
+
     Reserva* obtenerCalificacionUsuario(int codigoViaje, std::string nicknameCalificado);
-    
+
     Viaje* crearViaje(
-        int codigo,
+        Vehiculo* vehiculo,
         DTFecha fecha,
         std::string origen,
         std::string destino,
         int asientos,
-        int precio
+        float precio
     );
 
     ~ManejadorViajes();

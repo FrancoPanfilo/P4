@@ -19,6 +19,7 @@ public:
     DTFecha getFecha();
 
     Pasajero *getPasajero();
+    void setPasajero(Pasajero *pasajero);
 };
 
 #endif

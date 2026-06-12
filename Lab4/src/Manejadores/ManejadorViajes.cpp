@@ -25,7 +25,7 @@ std::vector<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std
 
     //Devuelve la información de los viajes que cumplen con las condiciones de búsqueda con la información del conductor y vehículo del mismo.
 
-    // (DSC Generar Reserva: DCM consultarViajes )    
+    // (DSC Generar Reserva: DCM consultarViajes )
 
     std::vector<DTConsultaViaje> resultado;
 
@@ -56,14 +56,10 @@ Reserva* ManejadorViajes::obtenerCalificacionUsuario(int codigoViaje, std::strin
 }
 
 
-Viaje* ManejadorViajes::crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientos, int precio) {
-    if (viajes.find(codigo) != viajes.end()) {
-        return nullptr;
-    }
+Viaje* ManejadorViajes::crearViaje(Vehiculo* vehiculo, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
+    Viaje* v = new Viaje(vehiculo, fecha, origen, destino, asientos, precio);
 
-    Viaje* v = new Viaje(codigo, fecha, origen, destino, asientos, precio);
-
-    viajes[codigo] = v;
+    viajes[v->obtenerCodigo()] = v;
 
     return v;
 }

@@ -4,6 +4,7 @@ Reserva::Reserva(int asientosReservados, DTFecha fecha)
 {
     this->asientosReservados = asientosReservados;
     this->fecha = fecha;
+    this->pasajero = nullptr;
 }
 
 Reserva::~Reserva() {}
@@ -20,4 +21,9 @@ DTFecha Reserva::getFecha()
 Pasajero *Reserva::getPasajero()
 {
     return this->pasajero;
+}
+
+void Reserva::setPasajero(Pasajero *pasajero)
+{
+    this->pasajero = pasajero;
 }

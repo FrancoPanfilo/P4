@@ -14,6 +14,8 @@ class Reserva;
 class Viaje
 {
 private:
+    static int ultimoCodigo;
+
     int codigo;
     DTFecha fecha;
     std::string origen;
@@ -25,7 +27,7 @@ private:
     std::vector<Reserva *> reservas;
 
 public:
-    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
+    Viaje(Vehiculo *vehiculo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~Viaje();
     int obtenerCodigo();
     DTFecha getFecha();
@@ -36,6 +38,7 @@ public:
 
     bool cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos);
     DTConsultaViaje getDTConsultaViaje(int asientos);
+    bool puedeReservar(int asientos);
 };
 
 #endif

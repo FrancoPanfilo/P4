@@ -21,6 +21,7 @@ bool Conductor::tieneLibreta(TipoVehiculo tipo)
 void Conductor::agregarVehiculo(Vehiculo *v)
 {
     this->vehiculos.push_back(v);
+    v->setConductor(this);
 }
 
 std::vector<TipoLibreta> Conductor::getLicencias()
@@ -37,4 +38,21 @@ std::vector<DTVehiculosConductor> Conductor::listarVehiculosConductor()
         dtVehiculos.push_back(dtv);
     }
     return dtVehiculos;
+}
+
+bool Conductor::hayViajesFechaConductor(DTFecha fecha)
+{
+    for (Vehiculo *vc : vehiculos)
+    {
+        if (vc->hayViajesFecha(fecha))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+float Conductor::getCalProm()
+{
+    return 0.0f;
 }
