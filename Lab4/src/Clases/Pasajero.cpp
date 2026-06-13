@@ -15,6 +15,13 @@ void Pasajero::agregarReserva(Reserva *reserva) {
     this->reservas.push_back(reserva);
 }
 
+void Pasajero::quitarReserva(Reserva* reserva) {
+    reservas.erase(
+        std::remove(reservas.begin(), reservas.end(), reserva),
+        reservas.end()
+    );
+}
+
 std::vector<Reserva*> Pasajero::getReservas()
 {
     return reservas;

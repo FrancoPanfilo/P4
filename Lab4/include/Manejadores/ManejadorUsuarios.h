@@ -50,6 +50,8 @@ public:
     std::vector<DTUsuario> listarUsuarios();
 
     Pasajero *findPasajero(std::string nickname);
+    
+    Conductor *findConductor(std::string nickname);
 
     Usuario *getUsuario(std::string nickname);
 

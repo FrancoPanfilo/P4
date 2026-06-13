@@ -156,6 +156,16 @@ std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
 }
 */
 
+Conductor* ManejadorUsuarios::findConductor(std::string nickname) {
+    auto it = usuarios.find(nickname);
+
+    if (it == usuarios.end()) { return nullptr; }
+
+    Conductor* conductor = dynamic_cast<Conductor*>(it->second);
+
+    return conductor;
+}
+
 Pasajero* ManejadorUsuarios::findPasajero(std::string nickname) {
     auto it = usuarios.find(nickname);
 

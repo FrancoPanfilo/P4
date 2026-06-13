@@ -11,6 +11,10 @@ ManejadorViajes* ManejadorViajes::getInstance() {
     return instancia;
 }
 
+std::map<int,Viaje*> ManejadorViajes::getViajes() {
+    return this->viajes;
+}
+
 Viaje* ManejadorViajes::obtenerViaje(int codigo) {
     auto it = viajes.find(codigo);
 
@@ -19,6 +23,10 @@ Viaje* ManejadorViajes::obtenerViaje(int codigo) {
     }
 
     return it->second;
+}
+
+void ManejadorViajes::eliminarViaje(int codigo) {
+    viajes.erase(codigo);
 }
 
 std::vector<DTConsultaViaje> ManejadorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {

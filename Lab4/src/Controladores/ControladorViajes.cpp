@@ -24,10 +24,6 @@ ControladorViajes* ControladorViajes::getInstance() {
     return instancia;
 }
 
-std::vector<DTVehiculosConductor> ControladorViajes::listarVehiculosConductor(std::string nickname) {
-    return std::vector<DTVehiculosConductor>();
-}
-
 bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen,
                                   std::string destino, int asientos, float precio) {
     Vehiculo* v = ManejadorVehiculos::getInstance()->getVehiculo(matricula);
@@ -48,10 +44,6 @@ bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::str
     v->asociarViaje(viaje);
 
     return true;
-}
-
-std::vector<std::string> ControladorViajes::listarPasajeros() {
-    return ManejadorUsuarios::getInstance()->listarPasajeros();
 }
 
 std::vector<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen,
@@ -84,19 +76,87 @@ bool ControladorViajes::generarReserva(std::string nickname, int codigo, int asi
     return true;
 }
 
+std::vector<std::string> ControladorViajes::listarPasajeros() {
+    return ManejadorUsuarios::getInstance()->listarPasajeros();
+}
+
 std::vector<DTListarViaje> ControladorViajes::listarViajes() {
-    return std::vector<DTListarViaje>();
+        
+    std::vector<DTListarViaje> res;
+
+    std::map<int, Viaje*> viajes = ManejadorViajes::getInstance()->getViajes();
+
+    for (auto const& par : viajes) {
+        Viaje* viaje = par.second;
+
+        DTListarViaje dt = viaje->getDTListarViaje();
+        res.push_back(dt);
+    }
+
+    return res;
+
+}
+
+std::vector<DTVehiculosConductor> ControladorViajes::listarVehiculosConductor(std::string nickname) {
+
+    std::vector<DTVehiculosConductor> res;
+
+    Conductor* conductor = ManejadorUsuarios::getInstance()->findConductor(nickname);
+
+    if (conductor == nullptr){ return res; }
+        
+    std::list<Vehiculo*> vehiculos = conductor->getVehiculos();
+
+    for (Vehiculo* v : vehiculos) {
+        DTVehiculosConductor dt(v->getMatricula(), v->getModelo(), v->getCapacidad());
+        res.push_back(dt);
+    }
+
+    return res;
 }
 
 DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {
     codigoMemoria = codigo;
-    DTDetalleVehiculo vehiculo("", 0, "", "", Auto);
-    return DTDetalleViaje(0, DTFecha(1, 1, 2024), "", "", 0, 0.0f,
-                          vehiculo, std::vector<DTDetalleReserva>());
+
+    Viaje* viaje = ManejadorViajes::getInstance()->obtenerViaje(codigo);
+
+    return viaje->getDTDetalleViaje();
 }
 
 void ControladorViajes::eliminarViaje() {
+    Viaje* viaje = ManejadorViajes::getInstance()->obtenerViaje(codigoMemoria);
+
+    if (viaje == nullptr) {
+        return;
+    }
+
+    Vehiculo* vehiculo = viaje->getVehiculo();
+
+    if (vehiculo != nullptr) {
+        vehiculo->quitarViaje(viaje);
+    }
+
+    std::vector<Reserva*> reservas = viaje->getReservas();
+
+    for (Reserva* reserva : reservas) {
+        Pasajero* pasajero = reserva->getPasajero();
+
+        if (pasajero != nullptr) {
+            pasajero->quitarReserva(reserva);
+        }
+
+        delete reserva;
+    }
+
+    viaje->vaciarReservas();
+
+    ManejadorViajes::getInstance()->eliminarViaje(this->codigoMemoria);
+
+    delete viaje;
+
+    this->codigoMemoria = 0;
 }
 
 void ControladorViajes::cancelarEliminarViaje() {
+    this->codigoMemoria = 0;
 }

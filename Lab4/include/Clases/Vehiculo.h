@@ -37,6 +37,8 @@ public:
     void asociarViaje(Viaje* viaje);
     std::list<Viaje*> getViajes();
 
+    void quitarViaje(Viaje* viaje);
+
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
 };

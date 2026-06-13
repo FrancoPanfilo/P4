@@ -57,6 +57,10 @@ std::list<Viaje*> Vehiculo::getViajes() {
     return viajes;
 }
 
+void Vehiculo::quitarViaje(Viaje* viaje) {
+    viajes.remove(viaje);
+}
+
 bool Vehiculo::hayViajesConductor(DTFecha fecha) {
     return conductor->hayViajesFechaConductor(fecha);
 }

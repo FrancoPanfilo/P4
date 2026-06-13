@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <list>
 
 #include "../Clases/Reserva.h"
 #include "../Clases/Viaje.h"
@@ -42,6 +43,10 @@ public:
         int asientos,
         float precio
     );
+
+    std::map<int, Viaje*> getViajes();
+
+    void eliminarViaje(int codigo);
 
     ~ManejadorViajes();
 };

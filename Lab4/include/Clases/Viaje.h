@@ -3,6 +3,7 @@
 
 #include "../DTyENUM/DTFecha.h"
 #include "../DTyENUM/DTDetalleVehiculo.h"
+#include "../DTyENUM/DTDetalleViaje.h"
 #include "../DTyENUM/DTDetalleReserva.h"
 #include "../DTyENUM/DTConsultaViaje.h"
 #include "../DTyENUM/DTListarViaje.h"
@@ -39,8 +40,11 @@ public:
     Vehiculo* getVehiculo();
     std::vector<Reserva*> getReservas();
     DTListarViaje getDTListarViaje();
+    DTDetalleViaje getDTDetalleViaje();
     //--
     std::vector<DTDetalleReserva> getDTReservas();
+    
+    void vaciarReservas();
 
     bool cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos);
     DTConsultaViaje getDTConsultaViaje(int asientos);

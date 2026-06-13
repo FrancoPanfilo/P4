@@ -56,8 +56,7 @@ Vehiculo* Viaje::getVehiculo(){
 
 DTDetalleVehiculo Viaje::getDTVehiculo()
 {
-    return DTDetalleVehiculo(vehiculo->getMatricula(), vehiculo->getCapacidad(),
-                             vehiculo->getMarca(), vehiculo->getModelo(), vehiculo->getTipo());
+    return DTDetalleVehiculo(vehiculo->getMatricula(), vehiculo->getCapacidad(), vehiculo->getMarca(), vehiculo->getModelo(), vehiculo->getTipo());
 }
 
 DTListarViaje Viaje::getDTListarViaje() {
@@ -69,6 +68,45 @@ DTListarViaje Viaje::getDTListarViaje() {
         this->destino,
         this->vehiculo->getNicknameConductor()
     );
+}
+
+DTDetalleViaje Viaje::getDTDetalleViaje() {
+    DTDetalleVehiculo dtVehiculo(
+        this->vehiculo->getMatricula(),
+        this->vehiculo->getCapacidad(),
+        this->vehiculo->getMarca(),
+        this->vehiculo->getModelo(),
+        this->vehiculo->getTipo()
+    );
+
+    std::vector<DTDetalleReserva> dtReservas;
+
+    for (Reserva* r : this->reservas) {
+        Pasajero* p = r->getPasajero();
+
+        DTDetalleReserva dtReserva(
+            r->getAsientosReservados(),
+            r->getFecha(),
+            p->getNickname()
+        );
+
+        dtReservas.push_back(dtReserva);
+    }
+
+    return DTDetalleViaje(
+        this->codigo,
+        this->fecha,
+        this->origen,
+        this->destino,
+        this->asientosPublicados,
+        this->precio,
+        dtVehiculo,
+        dtReservas
+    );
+}
+
+void Viaje::vaciarReservas() {
+    reservas.clear();
 }
 
 bool Viaje::cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos)

@@ -4,6 +4,7 @@
 #include "Usuario.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class Reserva;
 
@@ -18,6 +19,7 @@ public:
     std::string getCI();
     void agregarReserva(Reserva *reserva);
     std::vector<Reserva*> getReservas();
+    void quitarReserva(Reserva* reserva);
 };
 
 #endif
