@@ -317,7 +317,7 @@ void Menu::calificarUsuario()
     std::vector<DTUsuario> usuarios = controlador->listarUsuarios();
     for (DTUsuario u : usuarios)
     {
-        std::cout << "> Nickname: " << u.getNickname() << ", Nombre: " << u.getNombre();
+        std::cout << "> Nickname: " << u.getNickname() << ", Nombre: " << u.getNombre() << "\n";
     }
     std::string nickname;
     std::cout << "Ingrese su nickname: ";
@@ -361,6 +361,15 @@ void Menu::calificarUsuario()
     }
 
     std::vector<DTUsuarioViaje> usuariosViaje = controlador->listarUsuariosViaje(codigo);
+
+    //remover el usuario que califica de la lista de usuariosViaje para que no pueda calificarlo a si mismo
+    for (auto it = usuariosViaje.begin(); it != usuariosViaje.end(); ++it) {
+        if (it->getNickname() == nickname) {
+            usuariosViaje.erase(it);
+            break;
+        }
+    }
+
     for (DTUsuarioViaje uv : usuariosViaje)
     {
         std::string tipoTexto = (uv.getTipo() == TipoUsuario::Conductor) ? "Conductor" : "Pasajero";

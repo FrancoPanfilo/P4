@@ -75,6 +75,12 @@ std::vector<DTListarViaje> ControladorUsuarios::listarViajes(std::string nicknam
             res.push_back(dt);
         }
 
+        //ordenar res por codigo de menor a mayor
+        std::sort(res.begin(), res.end(), [](DTListarViaje a, DTListarViaje b) {
+            return a.getCodigo() < b.getCodigo();
+        });
+
+        
         return res;
     }
 
@@ -126,7 +132,7 @@ std::vector<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo)
 
     DTUsuarioViaje dtConductor(vehiculo->getNicknameConductor(), TipoUsuario::Conductor);
 
-    res.push_back(dtConductor);
+    res.insert(res.begin(), dtConductor);
 
     return res;
 }

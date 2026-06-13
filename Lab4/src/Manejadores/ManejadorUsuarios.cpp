@@ -102,34 +102,38 @@ std::vector<std::string> ManejadorUsuarios::listarPasajeros() {
         }
     }
 
+    
+
     return resultado;
 }
 
 std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
 
+    std::vector<DTUsuario> conductores;
+    std::vector<DTUsuario> pasajeros;
     std::vector<DTUsuario> resultado;
+
 
     for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
         Usuario* u = it->second;
 
         DTUsuario dt = u->getDTUsuario();
 
-        resultado.push_back(dt);
+        if (dynamic_cast<Conductor*>(u) != nullptr) {
+            conductores.push_back(dt);
+        }
+        else if (dynamic_cast<Pasajero*>(u) != nullptr) {
+            pasajeros.push_back(dt);
+        }
     }
+
+    //resultado = conductores + pasajeros;
+    resultado.insert(resultado.end(), conductores.begin(), conductores.end());
+    resultado.insert(resultado.end(), pasajeros.begin(), pasajeros.end());
 
     return resultado;
 }
 
-/*
-std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
-    std::vector<DTUsuario> resultado;
-    for (std::pair<std::string, Usuario*> par : usuarios) {
-        Usuario* u = par.second;
-        resultado.push_back(DTUsuario(u->getNickname(), u->getNombre()));
-    }
-    return resultado;
-}
-*/
 
 Conductor* ManejadorUsuarios::findConductor(std::string nickname) {
     auto it = usuarios.find(nickname);

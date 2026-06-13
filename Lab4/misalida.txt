@@ -100,13 +100,13 @@ Ingrese codigo del viaje a reservar: Reserva realizada exitosamente.
 Ingrese una opcion: > Nickname: ana_silva, Nombre: Ana Silva
 > Nickname: carlos_r, Nombre: Carlos Rossi
 > Nickname: greg_m, Nombre: Diego Rodriguez
+> Nickname: lau_vaz, Nombre: Laura Vazquez
+> Nickname: matil92, Nombre: Matias Lopez
+> Nickname: pedro_c, Nombre: pedro
 > Nickname: joaco_r, Nombre: Joaquin Rivero
 > Nickname: juan_p, Nombre: juan
-> Nickname: lau_vaz, Nombre: Laura Vazquez
 > Nickname: mari_b, Nombre: Maria Noel Barreto
-> Nickname: matil92, Nombre: Matias Lopez
 > Nickname: nacho_f, Nombre: Ignacio Figueroa
-> Nickname: pedro_c, Nombre: pedro
 > Nickname: santi_90, Nombre: Santiago Acosta
 > Nickname: valen_uy, Nombre: Valentina Mendez
 Ingrese su nickname: > Codigo: 3, Fecha: 20/10/2026, Origen: young, Destino: montevideo, Conductor: ana_silva
@@ -115,7 +115,6 @@ Ingrese su nickname: > Codigo: 3, Fecha: 20/10/2026, Origen: young, Destino: mon
 Ingrese codigo del viaje: > Nickname: nacho_f, Tipo: Pasajero
 > Nickname: valen_uy, Tipo: Pasajero
 > Nickname: joaco_r, Tipo: Pasajero
-> Nickname: ana_silva, Tipo: Conductor
 Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===
@@ -163,21 +162,20 @@ Ingrese codigo del viaje a eliminar: >> Viaje <<
 Ingrese una opcion: > Nickname: ana_silva, Nombre: Ana Silva
 > Nickname: carlos_r, Nombre: Carlos Rossi
 > Nickname: greg_m, Nombre: Diego Rodriguez
+> Nickname: lau_vaz, Nombre: Laura Vazquez
+> Nickname: matil92, Nombre: Matias Lopez
+> Nickname: pedro_c, Nombre: pedro
 > Nickname: joaco_r, Nombre: Joaquin Rivero
 > Nickname: juan_p, Nombre: juan
-> Nickname: lau_vaz, Nombre: Laura Vazquez
 > Nickname: mari_b, Nombre: Maria Noel Barreto
-> Nickname: matil92, Nombre: Matias Lopez
 > Nickname: nacho_f, Nombre: Ignacio Figueroa
-> Nickname: pedro_c, Nombre: pedro
 > Nickname: santi_90, Nombre: Santiago Acosta
 > Nickname: valen_uy, Nombre: Valentina Mendez
-Ingrese su nickname: > Codigo: 12, Fecha: 14/3/2026, Origen: montevideo, Destino: colonia, Conductor: carlos_r
-> Codigo: 9, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: matil92
-Ingrese codigo del viaje: > Nickname: santi_90, Tipo: Pasajero
+Ingrese su nickname: > Codigo: 9, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: matil92
+> Codigo: 12, Fecha: 14/3/2026, Origen: montevideo, Destino: colonia, Conductor: carlos_r
+Ingrese codigo del viaje: > Nickname: matil92, Tipo: Conductor
+> Nickname: santi_90, Tipo: Pasajero
 > Nickname: mari_b, Tipo: Pasajero
-> Nickname: nacho_f, Tipo: Pasajero
-> Nickname: matil92, Tipo: Conductor
 Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===
