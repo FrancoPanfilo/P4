@@ -144,10 +144,17 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     Calificacion* nuevaCalificacion = new Calificacion(fechaActual, calificacion, usuarioCalificador, reserva);
 
     //la agrega al usuario calificado
-    usuarioCalificador->agregarCalificacion(nuevaCalificacion);
+    usuarioCalificado->agregarCalificacion(nuevaCalificacion);
 
     nicknameMemoria = "";
     codigoMemoria = 0;
 
     return true;
+}
+
+bool ControladorUsuarios::cargarCalificacion (std::string nicknameCalificador, int codigoViaje, std::string nicknameCalificado, int calificacion) {
+    this->nicknameMemoria = nicknameCalificador;
+    this->codigoMemoria = codigoViaje;
+
+    return calificarUsuario(nicknameCalificado, calificacion);
 }

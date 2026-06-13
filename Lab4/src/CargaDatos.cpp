@@ -120,18 +120,18 @@ void CargaDatos::cargarDatos() {
     contviajes->generarReserva("nacho_f", 9, 1);
 
 
-    //calificaciones
 
-// santi_90	9	matil92	4
-// mari_b	9	matil92	4
-// matil92	9	mari_b	3
-// ana_silva	10	valen_uy	5
-// ana_silva	10	joaco_r	5
-// mari_b	12	carlos_r	5
-// carlos_r	12	nacho_f	5
-
+    contusuario->cargarCalificacion("santi_90", 9, "matil92", 4);
+    contusuario->cargarCalificacion("mari_b", 9, "matil92", 4);
+    contusuario->cargarCalificacion("matil92", 9, "mari_b", 3); 
+    contusuario->cargarCalificacion("ana_silva", 10, "valen_uy", 5);    
+    contusuario->cargarCalificacion("ana_silva", 10, "joaco_r", 5);
+    contusuario->cargarCalificacion("mari_b", 12, "carlos_r", 5);
+    contusuario->cargarCalificacion("carlos_r", 12, "nacho_f", 5);
 
 
     datosCargados = true;
+    std::cout << "Cargando datos harcodeados del sistema...\n";
     std::cout << "Datos cargados exitosamente.\n";
+
 }

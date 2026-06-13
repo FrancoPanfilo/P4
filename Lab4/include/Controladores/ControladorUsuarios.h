@@ -30,6 +30,7 @@ public:
     std::vector<DTListarViaje> listarViajes(std::string nickname);
     std::vector<DTUsuarioViaje> listarUsuariosViaje(int codigo);
     bool calificarUsuario(std::string nicknameCalificado, int calificacion);
+    bool cargarCalificacion(std::string nicknameCalificador, int codigoViaje, std::string nicknameCalificado, int calificacion);
 };
 
 #endif

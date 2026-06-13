@@ -51,14 +51,14 @@ void Menu::altaUsuario()
         std::cout << "Ingrese CI: ";
         std::getline(std::cin, ci);
         usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci);
-        if (usuarioOk)
-        {
-            std::cout << "Pasajero registrado exitosamente.\n";
-        }
-        else
-        {
-            std::cout << "No se pudo registrar el pasajero.\n";
-        }
+        // if (usuarioOk)
+        // {
+        //     std::cout << "Pasajero registrado exitosamente.\n";
+        // }
+        // else
+        // {
+        //     std::cout << "No se pudo registrar el pasajero.\n";
+        // }
     }
     else if (tipoUsuario == 2)
     {
@@ -67,13 +67,18 @@ void Menu::altaUsuario()
         while (agregarLibreta == 1)
         {
             int tipoLibreta;
-            std::cout << "Libretas: 0) MotoProfesional, 1) MotoAmateur, 2) AutoProfesional, 3) AutoAmateur\n";
-            std::cout << "Seleccione libreta: ";
+            std::cout << "\n=== Registrar Libreta ===\n"
+            "0. Moto (Profesional)\n"
+            "1. Moto (Amateur)\n"
+            "2. Auto (Profesional)\n"
+            "3. Auto (Amateur)\n";
+            std::cout << "Seleccione el tipo de libreta: ";
             std::cin >> tipoLibreta;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             if (tipoLibreta >= 0 && tipoLibreta <= 3)
             {
                 libretas.push_back(static_cast<TipoLibreta>(tipoLibreta));
+                std::cout << "Libreta agregada.\n";
             }
             else
             {
@@ -85,11 +90,7 @@ void Menu::altaUsuario()
         }
 
         usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas);
-        if (usuarioOk)
-        {
-            std::cout << "Conductor registrado exitosamente.\n";
-        }
-        else
+        if (!usuarioOk)
         {
             std::cout << "No se pudo registrar el conductor.\n";
         }
@@ -145,8 +146,8 @@ void Menu::altaViaje()
     std::vector<DTVehiculosConductor> vehiculos = controlador->listarVehiculosConductor(nickname);
     for (DTVehiculosConductor v : vehiculos)
     {
-        std::cout << "> Matricula: " << v.getMatricula() << ", Capacidad: " << v.getCapacidad()
-                  << ", Modelo: " << v.getModelo() << "\n";
+        std::cout << "> Matricula: " << v.getMatricula() << ", Modelo: " << v.getModelo() <<
+         ", Capacidad: " << v.getCapacidad() << "\n";
     }
 
     std::cout << "Ingrese matricula del vehiculo a utilizar: ";
@@ -396,7 +397,7 @@ void Menu::eliminarViaje()
     std::cout << ">> Viaje <<\n";
     std::cout << "--- Codigo: " << detalle.getCodigo() << ", Fecha: " << detalle.getFecha()
               << ", Origen: " << detalle.getOrigen() << ", Destino: " << detalle.getDestino()
-              << ", Capacidad: " << detalle.getAsientosPublicados()
+              << ", AsientosPublicados: " << detalle.getAsientosPublicados()
               << ", Precio por asiento: " << detalle.getPrecio() << "\n";
     DTDetalleVehiculo vehiculo = detalle.getVehiculo();
     std::string tipoTexto = (vehiculo.getTipo() == Auto) ? "Auto" : "Moto";
@@ -474,7 +475,6 @@ void Menu::mostrarMenu()
     int opcion = -1;
     while (opcion != 8)
     {
-        std::cout << "\n=====PAco: Las as opciones 2,4 y 5 todavia no funcionan====\n";
         std::cout << "\n=== MENU PRINCIPAL ===\n";
         std::cout << "1. Alta de Usuario\n";
         std::cout << "2. Alta de Viaje\n";

@@ -69,7 +69,7 @@ bool ControladorViajes::generarReserva(std::string nickname, int codigo, int asi
     DTFecha fechaActual = ControladorFechaActual::getInstance()->getFecha();
     Reserva* re = new Reserva(asientos, fechaActual);
     re->setPasajero(p);
-
+    re->setViaje(vi);
     vi->agregarReserva(re);
     p->agregarReserva(re);
 
