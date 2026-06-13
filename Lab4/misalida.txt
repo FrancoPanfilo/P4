@@ -85,7 +85,7 @@ Ingrese una opcion: > joaco_r
 > nacho_f
 > santi_90
 > valen_uy
-Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: > Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro, CalificacionPromedio: 0, PrecioTotal: 100
+Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: > Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro, CalificacionPromedio: 5, PrecioTotal: 100
 Ingrese codigo del viaje a reservar: Reserva realizada exitosamente.
 
 === MENU PRINCIPAL ===

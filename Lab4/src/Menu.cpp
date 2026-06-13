@@ -100,11 +100,7 @@ void Menu::altaUsuario()
         std::cout << "Ingrese CI: ";
         std::getline(std::cin, ci);
         usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci);
-        if (usuarioOk)
-        {
-            std::cout << "Pasajero registrado exitosamente.\n";
-        }
-        else
+        if (!usuarioOk)
         {
             std::cout << "No se pudo registrar el pasajero.\n";
         }
@@ -137,11 +133,7 @@ void Menu::altaUsuario()
         }
 
         usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas);
-        if (usuarioOk)
-        {
-            std::cout << "Conductor registrado exitosamente.\n";
-        }
-        else
+        if (!usuarioOk)
         {
             std::cout << "No se pudo registrar el conductor.\n";
         }
@@ -325,7 +317,7 @@ void Menu::calificarUsuario()
     std::vector<DTUsuario> usuarios = controlador->listarUsuarios();
     for (DTUsuario u : usuarios)
     {
-        std::cout << "> Nickname: " << u.getNickname() << ", Nombre: " << u.getNombre() << "\n";
+        std::cout << "> Nickname: " << u.getNickname() << ", Nombre: " << u.getNombre();
     }
     std::string nickname;
     std::cout << "Ingrese su nickname: ";

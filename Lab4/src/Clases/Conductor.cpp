@@ -61,7 +61,7 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha)
 float Conductor::getCalProm()
 {
     //---
-    if (calificacionesRecibidas.empty()){ return 0.0f; }
+    if (calificacionesRecibidas.empty()){ return 5.0f; }
         
     float suma = 0;
 
