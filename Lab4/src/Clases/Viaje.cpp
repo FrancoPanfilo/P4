@@ -50,10 +50,25 @@ std::vector<Reserva*> Viaje::getReservas()
     return reservas;
 }
 
-DTDetalleVehiculo Viaje::getVehiculo()
+Vehiculo* Viaje::getVehiculo(){
+    return vehiculo;
+}
+
+DTDetalleVehiculo Viaje::getDTVehiculo()
 {
     return DTDetalleVehiculo(vehiculo->getMatricula(), vehiculo->getCapacidad(),
                              vehiculo->getMarca(), vehiculo->getModelo(), vehiculo->getTipo());
+}
+
+DTListarViaje Viaje::getDTListarViaje() {
+   
+    return DTListarViaje(
+        this->codigo,
+        this->fecha,
+        this->origen,
+        this->destino,
+        this->vehiculo->getNicknameConductor()
+    );
 }
 
 bool Viaje::cumpleCriterio(DTFecha fecha, std::string origen, std::string destino, int asientos)

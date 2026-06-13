@@ -23,6 +23,7 @@ public:
     bool tieneLibreta(TipoVehiculo tipo);
     std::vector<DTVehiculosConductor> listarVehiculosConductor();
     std::vector<TipoLibreta> getLicencias();
+    std::list<Vehiculo *> getVehiculos();
     void agregarVehiculo(Vehiculo *v);
     bool hayViajesFechaConductor(DTFecha fecha);
     float getCalProm();

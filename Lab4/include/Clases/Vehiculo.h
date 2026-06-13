@@ -30,6 +30,7 @@ public:
     std::string getModelo();
     TipoVehiculo getTipo();
     std::string getNombreConductor();
+    std::string getNicknameConductor();
     float getCalPromConductor();
 
     void setConductor(Conductor *conductor);

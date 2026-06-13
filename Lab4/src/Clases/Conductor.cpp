@@ -29,6 +29,12 @@ std::vector<TipoLibreta> Conductor::getLicencias()
     return libretas;
 }
 
+std::list<Vehiculo *> Conductor::getVehiculos()
+{
+    return vehiculos;
+}
+
+
 std::vector<DTVehiculosConductor> Conductor::listarVehiculosConductor()
 {
     std::vector<DTVehiculosConductor> dtVehiculos;

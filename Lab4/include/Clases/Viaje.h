@@ -5,6 +5,7 @@
 #include "../DTyENUM/DTDetalleVehiculo.h"
 #include "../DTyENUM/DTDetalleReserva.h"
 #include "../DTyENUM/DTConsultaViaje.h"
+#include "../DTyENUM/DTListarViaje.h"
 #include <string>
 #include <vector>
 
@@ -32,10 +33,12 @@ public:
     int obtenerCodigo();
     DTFecha getFecha();
 
-    DTDetalleVehiculo getVehiculo();
+    DTDetalleVehiculo getDTVehiculo();
     void agregarReserva(Reserva *reserva);
     //--
+    Vehiculo* getVehiculo();
     std::vector<Reserva*> getReservas();
+    DTListarViaje getDTListarViaje();
     //--
     std::vector<DTDetalleReserva> getDTReservas();
 

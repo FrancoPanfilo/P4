@@ -4,6 +4,7 @@
 //--
 #include "../../include/Manejadores/ManejadorViajes.h"
 #include "../../include/Controladores/ControladorFechaActual.h"
+#include "../../include/Clases/Vehiculo.h"
 //--
 
 ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
@@ -46,11 +47,74 @@ std::vector<DTUsuario> ControladorUsuarios::listarUsuarios() {
 }
 
 std::vector<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
-    return std::vector<DTListarViaje>();
+
+    std::vector<DTListarViaje> res;    
+
+    this->nicknameMemoria = nickname; // postcondición: se guarda el nickname recibido
+
+    Usuario* u = ManejadorUsuarios::getInstance()->getUsuario(nickname);
+
+    Pasajero* p = dynamic_cast<Pasajero*>(u);
+    if (p != nullptr) {
+        std::vector<Reserva*> reservas = p->getReservas();
+
+        for (Reserva* r : reservas) {
+            Viaje* v = r->getViaje();
+
+            DTListarViaje dt = v->getDTListarViaje();
+            res.push_back(dt);
+        }
+
+        return res;
+    }
+
+    Conductor* c = dynamic_cast<Conductor*>(u);
+    if (c != nullptr) {
+        std::list<Vehiculo*> vehiculos = c->getVehiculos();
+
+        for (Vehiculo* vehiculo : vehiculos) {
+            std::list<Viaje*> viajes = vehiculo->getViajes();
+
+            for (Viaje* v : viajes) {
+                DTListarViaje dt = v->getDTListarViaje();
+                res.push_back(dt);
+            }
+        }
+    }
+
+    return res;
+
 }
 
 std::vector<DTUsuarioViaje> ControladorUsuarios::listarUsuariosViaje(int codigo) {
-    return std::vector<DTUsuarioViaje>();
+    
+    std::vector<DTUsuarioViaje> res;
+
+    this->codigoMemoria = codigo; // postcondición: se guarda el código recibido
+
+    Viaje* viaje = ManejadorViajes::getInstance()->obtenerViaje(codigo);
+    if (viaje == nullptr) {
+        return res;
+    }
+
+    std::vector<Reserva*> reservas = viaje->getReservas();
+
+    for (Reserva* reserva : reservas) {
+        Pasajero* pasajero = reserva->getPasajero();
+
+        DTUsuarioViaje dt(pasajero->getNickname(),TipoUsuario::Pasajero);
+
+        res.push_back(dt);
+    }
+
+    Vehiculo* vehiculo = viaje->getVehiculo();
+
+    DTUsuarioViaje dtConductor(vehiculo->getNicknameConductor(),TipoUsuario::Conductor);
+
+    res.push_back(dtConductor);
+
+    return res;
+
 }
 
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion)

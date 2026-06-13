@@ -37,6 +37,10 @@ std::string Vehiculo::getNombreConductor() {
     return conductor->getNombre();
 }
 
+std::string Vehiculo::getNicknameConductor() {
+    return conductor->getNickname();
+}
+
 float Vehiculo::getCalPromConductor() {
     return conductor->getCalProm();
 }

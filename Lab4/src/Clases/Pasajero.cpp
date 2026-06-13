@@ -14,3 +14,8 @@ std::string Pasajero::getCI(){
 void Pasajero::agregarReserva(Reserva *reserva) {
     this->reservas.push_back(reserva);
 }
+
+std::vector<Reserva*> Pasajero::getReservas()
+{
+    return reservas;
+}

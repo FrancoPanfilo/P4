@@ -17,6 +17,7 @@ public:
     ~Pasajero();
     std::string getCI();
     void agregarReserva(Reserva *reserva);
+    std::vector<Reserva*> getReservas();
 };
 
 #endif
