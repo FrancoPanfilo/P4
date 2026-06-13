@@ -16,6 +16,56 @@
 #include <string>
 #include <vector>
 
+int Menu::leerEntero()
+{
+    int valor;
+    while (!(std::cin >> valor))
+    {
+        if (std::cin.eof())
+        {
+            return 0; // fin de entrada: el llamador (menu) corta el bucle por eof
+        }
+        std::cin.clear(); // limpia el estado de error dejado por la entrada invalida
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Entrada invalida. Ingrese un numero: ";
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return valor;
+}
+
+float Menu::leerFloat()
+{
+    float valor;
+    while (!(std::cin >> valor))
+    {
+        if (std::cin.eof())
+        {
+            return 0.0f;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Entrada invalida. Ingrese un numero: ";
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return valor;
+}
+
+void Menu::leerFecha(int &dia, int &mes, int &anio)
+{
+    while (!(std::cin >> dia >> mes >> anio))
+    {
+        if (std::cin.eof())
+        {
+            dia = mes = anio = 0;
+            return;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Fecha invalida. Ingrese dia mes anio: ";
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
 void Menu::altaUsuario()
 {
     IAltaUsuario *controlador = Fabrica::getInstance()->getIAltaUsuario();
@@ -24,8 +74,7 @@ void Menu::altaUsuario()
     std::cout << "1. Alta Pasajero\n";
     std::cout << "2. Alta Conductor\n";
     std::cout << "Seleccione: ";
-    std::cin >> tipoUsuario;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    tipoUsuario = leerEntero();
 
     if (tipoUsuario != 1 && tipoUsuario != 2)
     {
@@ -51,14 +100,14 @@ void Menu::altaUsuario()
         std::cout << "Ingrese CI: ";
         std::getline(std::cin, ci);
         usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci);
-        // if (usuarioOk)
-        // {
-        //     std::cout << "Pasajero registrado exitosamente.\n";
-        // }
-        // else
-        // {
-        //     std::cout << "No se pudo registrar el pasajero.\n";
-        // }
+        if (usuarioOk)
+        {
+            std::cout << "Pasajero registrado exitosamente.\n";
+        }
+        else
+        {
+            std::cout << "No se pudo registrar el pasajero.\n";
+        }
     }
     else if (tipoUsuario == 2)
     {
@@ -73,8 +122,7 @@ void Menu::altaUsuario()
             "2. Auto (Profesional)\n"
             "3. Auto (Amateur)\n";
             std::cout << "Seleccione el tipo de libreta: ";
-            std::cin >> tipoLibreta;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            tipoLibreta = leerEntero();
             if (tipoLibreta >= 0 && tipoLibreta <= 3)
             {
                 libretas.push_back(static_cast<TipoLibreta>(tipoLibreta));
@@ -85,12 +133,15 @@ void Menu::altaUsuario()
                 std::cout << "Libreta invalida.\n";
             }
             std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
-            std::cin >> agregarLibreta;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            agregarLibreta = leerEntero();
         }
 
         usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas);
-        if (!usuarioOk)
+        if (usuarioOk)
+        {
+            std::cout << "Conductor registrado exitosamente.\n";
+        }
+        else
         {
             std::cout << "No se pudo registrar el conductor.\n";
         }
@@ -104,15 +155,13 @@ void Menu::altaUsuario()
             std::cout << "Ingrese matricula: ";
             std::getline(std::cin, matricula);
             std::cout << "Ingrese capacidad: ";
-            std::cin >> capacidad;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            capacidad = leerEntero();
             std::cout << "Ingrese marca: ";
             std::getline(std::cin, marca);
             std::cout << "Ingrese modelo: ";
             std::getline(std::cin, modelo);
             std::cout << "Ingrese tipo (0: Auto, 1: Moto): ";
-            std::cin >> tipo;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            tipo = leerEntero();
             int resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, static_cast<TipoVehiculo>(tipo));
             if (resultadoRegistrarVehiculo == -1)
             {
@@ -127,8 +176,7 @@ void Menu::altaUsuario()
                 std::cout << "Vehiculo registrado exitosamente.\n";
             }
             std::cout << "¿Desea agregar otro vehiculo? (1: Si, 0: No): ";
-            std::cin >> agregarVehiculo;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            agregarVehiculo = leerEntero();
         }
     }
 }
@@ -167,17 +215,15 @@ void Menu::altaViaje()
     }
 
     std::cout << "Ingrese fecha del viaje (dia mes anio): ";
-    std::cin >> dia >> mes >> anio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    leerFecha(dia, mes, anio);
     std::cout << "Ingrese origen: ";
     std::getline(std::cin, origen);
     std::cout << "Ingrese destino: ";
     std::getline(std::cin, destino);
     std::cout << "Ingrese cantidad de asientos: ";
-    std::cin >> asientos;
+    asientos = leerEntero();
     std::cout << "Ingrese precio por asiento: ";
-    std::cin >> precio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    precio = leerFloat();
     bool viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio);
     if (viajeOk)
     {
@@ -220,15 +266,13 @@ void Menu::generarReserva()
     int dia, mes, anio, asientos;
     std::string origen, destino;
     std::cout << "Ingrese fecha del viaje a consultar (dia mes anio): ";
-    std::cin >> dia >> mes >> anio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    leerFecha(dia, mes, anio);
     std::cout << "Ingrese origen: ";
     std::getline(std::cin, origen);
     std::cout << "Ingrese destino: ";
     std::getline(std::cin, destino);
     std::cout << "Ingrese cantidad de asientos a reservar: ";
-    std::cin >> asientos;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    asientos = leerEntero();
 
     std::vector<DTConsultaViaje> viajes = controlador->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
     for (DTConsultaViaje d : viajes)
@@ -248,8 +292,7 @@ void Menu::generarReserva()
 
     int codigo;
     std::cout << "Ingrese codigo del viaje a reservar: ";
-    std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    codigo = leerEntero();
     bool codigoValido = false;
     for (DTConsultaViaje d : viajes)
     {
@@ -310,8 +353,7 @@ void Menu::calificarUsuario()
     }
     int codigo;
     std::cout << "Ingrese codigo del viaje: ";
-    std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    codigo = leerEntero();
     bool codigoValido = false;
     for (DTListarViaje v : viajes)
     {
@@ -337,8 +379,7 @@ void Menu::calificarUsuario()
     std::cout << "Ingrese nickname del usuario a calificar: ";
     std::getline(std::cin, nicknameCalificado);
     std::cout << "Ingrese calificacion (1-5): ";
-    std::cin >> calificacion;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    calificacion = leerEntero();
     bool nicknameCalificadoValido = false;
     for (DTUsuarioViaje uv : usuariosViaje)
     {
@@ -377,8 +418,7 @@ void Menu::eliminarViaje()
     }
     int codigo;
     std::cout << "Ingrese codigo del viaje a eliminar: ";
-    std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    codigo = leerEntero();
     bool codigoValido = false;
     for (DTListarViaje v : viajes)
     {
@@ -415,8 +455,7 @@ void Menu::eliminarViaje()
 
     int confirmar;
     std::cout << "¿Confirmar eliminacion? (1: Si, 0: No): ";
-    std::cin >> confirmar;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    confirmar = leerEntero();
     if (confirmar == 1)
     {
         controlador->eliminarViaje();
@@ -435,8 +474,7 @@ void Menu::administrarFechaActual()
     std::cout << "1. Ver fecha actual\n";
     std::cout << "2. Modificar fecha actual\n";
     std::cout << "Seleccione: ";
-    std::cin >> opFecha;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    opFecha = leerEntero();
 
     Fabrica *fabrica = Fabrica::getInstance();
     IControladorFechaActual *controladorFecha = fabrica->getIControladorFechaActual();
@@ -450,12 +488,11 @@ void Menu::administrarFechaActual()
     {
         int dia, mes, anio;
         std::cout << "Ingrese dia: ";
-        std::cin >> dia;
+        dia = leerEntero();
         std::cout << "Ingrese mes: ";
-        std::cin >> mes;
+        mes = leerEntero();
         std::cout << "Ingrese anio: ";
-        std::cin >> anio;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        anio = leerEntero();
         controladorFecha->setFecha(DTFecha(dia, mes, anio));
         std::cout << "Fecha modificada exitosamente a " << controladorFecha->getFecha() << "\n";
     }
@@ -485,8 +522,11 @@ void Menu::mostrarMenu()
         std::cout << "7. Cargar Datos\n";
         std::cout << "8. Salir\n";
         std::cout << "Ingrese una opcion: ";
-        std::cin >> opcion;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        opcion = leerEntero();
+        if (std::cin.eof())
+        {
+            break;
+        }
 
         switch (opcion)
         {

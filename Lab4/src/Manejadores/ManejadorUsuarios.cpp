@@ -20,21 +20,16 @@ bool ManejadorUsuarios::nuevoPasajero(std::string nickname,
                                        std::string email,
                                        std::string ci) {
 
-    // (altaPasajero DCM)
-    
-    // 1.1: e := exists(nickname)
-    bool e = usuarios.find(nickname) != usuarios.end(); //.end() apunta justo despues del ultimo elemento
+    if (contrasena.length() < 8) { return false; }
 
-    // Si e == TRUE retorna FALSE
+    bool e = usuarios.find(nickname) != usuarios.end();
+
     if (e) { return false; }
 
-    // 1.2a [not e]: p := create(...)
     Pasajero* p = new Pasajero(nickname, nombre, contrasena, email, ci);
 
-    // 1.3a: add(p)
     usuarios[nickname] = p;
 
-    // retorna TRUE
     return true;
 }
 
@@ -43,21 +38,16 @@ bool ManejadorUsuarios::nuevoConductor(std::string nickname,
                                         std::string contrasena,
                                         std::string email,
                                         std::vector<TipoLibreta> libretas) {
-    // (altaConductor DCM)
-    
-    // 1.1: e := exists(nickname)
+    if (contrasena.length() < 8) { return false; }
+
     bool e = usuarios.find(nickname) != usuarios.end();
 
-    // Si e == TRUE retorna FALSE
     if (e) { return false; }
 
-    // 1.2a [not e]: p := create(...)
     Conductor* c = new Conductor(nickname, nombre, contrasena, email, libretas);
 
-    // 1.3a: add(p)
     usuarios[nickname] = c;
 
-    // retorna TRUE
     return true;
 
 }
@@ -69,9 +59,6 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
                                           std::string modelo,
                                           TipoVehiculo tipo) {
 
-    // (registrarVehiculo DCM)
-
-    // 2.1: c := find(nickname)
     Usuario* u = getUsuario(nickname);
 
     if (u == nullptr) {
@@ -79,27 +66,23 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
     }
 
     Conductor* c = dynamic_cast<Conductor*>(u);
-    //Performs checks at runtime. If the object being pointed to is not of the target type (or a valid derived type), the cast returns nullptr.    
 
     if (c == nullptr) {
         return -2; // Existe usuario, pero no es conductor
     }
 
-    // 2.2: tl := tieneLibreta(tipo)
+    ManejadorVehiculos* mv = ManejadorVehiculos::getInstance();
+
+    if (mv->existeVehiculo(matricula)) { return -1; }
+
     bool tieneLibreta = c->tieneLibreta(tipo);
 
     if (!tieneLibreta) { return -2; }
-    // No tiene tipo de licencia para el vehículo
-
-    // 2.4: nuevoVehiculo(...)
-    ManejadorVehiculos* mv = ManejadorVehiculos::getInstance();
 
     Vehiculo* v = mv->nuevoVehiculo(matricula, capacidad, marca, modelo, tipo);
 
     if (v == nullptr) { return -1; }
-    // Matrícula repetida u otro error al crear
 
-    // 2.4.3.1: add(v)
     c->agregarVehiculo(v);
 
     return 0;
@@ -107,17 +90,13 @@ int ManejadorUsuarios::registrarVehiculo(std::string nickname,
 
 std::vector<std::string> ManejadorUsuarios::listarPasajeros() {
 
-  // (listarPasajeros DCM)
-
   std::vector<std::string> resultado;
 
-  // 1* [foreach]: u := next()
     for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
         Usuario* u = it->second;
 
         Pasajero* p = dynamic_cast<Pasajero*>(u);
 
-        // 2* nick := getNickname() : String
         if (p != nullptr) {
             resultado.push_back(p->getNickname());
         }
@@ -128,15 +107,11 @@ std::vector<std::string> ManejadorUsuarios::listarPasajeros() {
 
 std::vector<DTUsuario> ManejadorUsuarios::listarUsuarios() {
 
-    // (listarUsuarios DCM)
-
     std::vector<DTUsuario> resultado;
 
-    // 1* [foreach]: u := next()
     for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
         Usuario* u = it->second;
 
-        // 2* DTUsuario := getDTUsuario()
         DTUsuario dt = u->getDTUsuario();
 
         resultado.push_back(dt);
@@ -182,6 +157,12 @@ Usuario* ManejadorUsuarios::getUsuario(std::string nickname) {
     if (it == usuarios.end()) { return nullptr; }
 
     return it->second;
+}
+
+void ManejadorUsuarios::eliminarCalificacionesDeReserva(Reserva* reserva) {
+    for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
+        it->second->quitarCalificacionesDeReserva(reserva);
+    }
 }
 
 ManejadorUsuarios::~ManejadorUsuarios() {

@@ -9,6 +9,7 @@
 //---
 
 class DTUsuario;
+class Reserva;
 
 class Usuario
 {
@@ -28,8 +29,11 @@ public:
 
     //--
     void agregarCalificacion(Calificacion* calificacion);
+    std::vector<Calificacion *> getCalificacionesRecibidas();
+    // elimina (y libera) las calificaciones que cuelgan de la reserva dada
+    void quitarCalificacionesDeReserva(Reserva* reserva);
     //--
-    
+
     std::string getNickname();
     std::string getNombre();
     std::string getEmail();

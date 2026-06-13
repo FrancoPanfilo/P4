@@ -32,6 +32,10 @@ bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::str
         return false;
     }
 
+    if (precio <= 0 || asientos < 1) {
+        return false;
+    }
+
     if (v->getCapacidad() < asientos) {
         return false;
     }
@@ -52,6 +56,10 @@ std::vector<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, s
 }
 
 bool ControladorViajes::generarReserva(std::string nickname, int codigo, int asientos) {
+    if (asientos < 1) {
+        return false;
+    }
+
     Viaje* vi = ManejadorViajes::getInstance()->obtenerViaje(codigo);
     if (vi == nullptr) {
         return false;
@@ -66,7 +74,18 @@ bool ControladorViajes::generarReserva(std::string nickname, int codigo, int asi
         return false;
     }
 
+    for (Reserva* existente : vi->getReservas()) {
+        if (existente->reservaEsDeUsuario(nickname)) {
+            return false;
+        }
+    }
+
     DTFecha fechaActual = ControladorFechaActual::getInstance()->getFecha();
+
+    if (fechaActual.esPosteriorA(vi->getFecha())) {
+        return false;
+    }
+
     Reserva* re = new Reserva(asientos, fechaActual);
     re->setPasajero(p);
     re->setViaje(vi);
@@ -144,6 +163,8 @@ void ControladorViajes::eliminarViaje() {
         if (pasajero != nullptr) {
             pasajero->quitarReserva(reserva);
         }
+
+        ManejadorUsuarios::getInstance()->eliminarCalificacionesDeReserva(reserva);
 
         delete reserva;
     }

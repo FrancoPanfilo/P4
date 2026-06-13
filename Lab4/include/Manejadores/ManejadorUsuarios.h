@@ -12,6 +12,8 @@
 #include "../DTyENUM/TipoLibreta.h"
 #include "../DTyENUM/TipoVehiculo.h"
 
+class Reserva;
+
 class ManejadorUsuarios
 {
 private:
@@ -54,6 +56,9 @@ public:
     Conductor *findConductor(std::string nickname);
 
     Usuario *getUsuario(std::string nickname);
+
+    // recorre todos los usuarios y elimina las calificaciones que cuelgan de la reserva dada
+    void eliminarCalificacionesDeReserva(Reserva* reserva);
 
     ~ManejadorUsuarios();
 };

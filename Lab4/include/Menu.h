@@ -1,7 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 
-class Menu {
+class Menu
+{
 private:
     void altaUsuario();
     void altaViaje();
@@ -10,6 +11,11 @@ private:
     void eliminarViaje();
     void administrarFechaActual();
     void cargarDatos();
+
+    // para que no se buguee al poner una letra en lugar de un numero
+    int leerEntero();
+    float leerFloat();
+    void leerFecha(int &dia, int &mes, int &anio);
 
 public:
     void mostrarMenu();

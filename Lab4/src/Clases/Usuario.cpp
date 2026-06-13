@@ -30,4 +30,19 @@ DTUsuario Usuario::getDTUsuario() {
 void Usuario::agregarCalificacion(Calificacion* calificacion){
     calificacionesRecibidas.push_back(calificacion);
 }
+
+std::vector<Calificacion *> Usuario::getCalificacionesRecibidas(){
+    return calificacionesRecibidas;
+}
+
+void Usuario::quitarCalificacionesDeReserva(Reserva* reserva){
+    for (auto it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ){
+        if ((*it)->getReserva() == reserva){
+            delete *it;                                  // libera la Calificacion
+            it = calificacionesRecibidas.erase(it);      // la quita de la coleccion
+        } else {
+            ++it;
+        }
+    }
+}
 //--
